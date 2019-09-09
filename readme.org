@@ -1,0 +1,7 @@
+* Blog source
+
+I'm hosted a blog over at [[http://ianhocking.com]].
+
+Here you'll find my source files.
+
+For more on how I get from these to my blog, see the excellent [[https://ox-hugo.scripter.co]]. 

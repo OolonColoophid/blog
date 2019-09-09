@@ -1,0 +1,402 @@
+#+HUGO_BASE_DIR: ./
+#+TITLE: Ian Hocking
+
+* Setup
+
+We'll go with ox-hugo and use the instructions suggested by this kind individual: [[http://petercheng.net/posts/website-v2-setup/][Publishing a Website from Emacs and Hugo · Peter Cheng]]
+
+I've created a new directory for my files here [[file+emacs:~/Dropbox/org/blog/programmer]]
+
+~Hugo~ is installed.
+
+Package ~ox-hugo~ is installed.
+
+I like the look of the ~hugo-coder~ theme, and I've added it to ~themes~. The
+full set of parameters (for ~config.toml~) are in [[https://github.com/luizdepra/hugo-coder/wiki/Configurations#complete-example][Configurations · luizdepra/hugo-coder Wiki · GitHub]].
+
+#+BEGIN_SRC shell
+cd ~/Dropbox/org/blog
+hugo new site programmer
+cd programmer && git clone https://github.com/luizdepra/hugo-coder.git themes/hugo-coder
+#+END_SRC
+
+Let's look at the .toml file, which contains important settings.
+
+#+BEGIN_SRC shell :results output
+cat ~/Dropbox/org/blog/programmer/config.toml
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+baseURL = "http://example.org/"
+languageCode = "en-gb"
+title = "Ian Hocking"
+
+theme = "programmer"
+
+[params]
+    author = "Ian Hocking"
+    authorimage = "http://ianhocking.com/wordpress/wp-content/IMG_8348-682x1024.jpg"
+    description = "Chips with Everything"
+    highlightjs = true
+    highlightjsstyle = "zenburn"
+    highlightjslanguages = ["lisp"]
+[params.social]
+    github = "OolonColoophid"
+    linkedin = "ianhocking"
+
+[[menu.main]]
+    name = "Posts"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+[[menu.main]]
+    name = "About"
+    identifier = "about"
+    weight = 200
+    url = "/about/"
+#+end_example
+
+The site should export automatically on save, thanks to the file
+~.dir-locals.el~, which sets ~org-hugo-auto-export-mode~.
+
+When updating, we can have the Hugo server take us directly to the page that has
+changed like so:
+
+#+BEGIN_SRC shell
+hugo server -D --navigateToChanged
+#+END_SRC
+
+* Todos
+** TODO Add URL to my old blog in About
+** DONE 404 is currently my Wordpress 404
+- Is my symbolic link to the new 404 working yet?
+** TODO Update About
+** TODO Write a Post
+
+* Hidden
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: hidden
+:END:
+
+This section won't appear explicitly on my website, but I'd like it to be
+here so I can check out how my 'style guide' looks on the web.
+
+This page exists in a Hugo Section (e.g. pages, posts) called 'Hidden'.
+Access it from: [[http://ianhocking.com/blog/hidden/style/]]
+
+** Style Guide
+:PROPERTIES:
+:EXPORT_FILE_NAME: style
+:EXPORT_DATE: 2019-08-01
+:END:
+
+
+Let's read about how to write posts in Ox-Hugo--after the jump. (This will
+probably only work in the RSS.)
+
+#+hugo: more
+
+Don't want to export a post? Use the /noexport/ tag. Otherwise, a TODO heading
+marks it as a draft. Mod.
+
+*** Formatting
+Some formatting tips:
+
+#+CAPTION: Org and Markdown
+|--------------------+--------------------------------------------------------------------+-----------------------|
+| Org                | Markdown                                                           | In Hugo rendered HTML |
+|--------------------+--------------------------------------------------------------------+-----------------------|
+| =*bold*=           | =**bold**=                                                         | *bold*                |
+| =/italics/=        | =_italics_=                                                        | /italics/             |
+| ==monospace==      | =`monospace`=                                                      | =monospace=           |
+| =~key-binding~=    | =`key-binding`=                                                    | ~key-binding~         |
+|                    | - if =org-hugo-use-code-for-kbd= is nil [default]                  |                       |
+| =~key-binding~=    | =<kbd>key-binding</kbd>=                                           |                       |
+|                    | - if =org-hugo-use-code-for-kbd= is non-nil                        |                       |
+|                    | - Requires *CSS* to render the =<kbd>= tag as something special.   |                       |
+| =+strike-through+= | =~~strike-through~~=                                               | +strike-through+      |
+| =_underline_=      | =<span class = "underline">underline</span>=                       | _underline_           |
+|                    | - Requires *CSS* to render this =underline= class as an underline. |                       |
+|--------------------+--------------------------------------------------------------------+-----------------------|
+
+So, for everything that might appear on a computer screen:
+
+*** Exporting
+
+To export an org block:
+
+: * Local variables :noexport:
+: # local variables:
+: # +org-export-directory: "projects/"
+: # end:
+
+*** Images :error:
+
+[[/images/foo.png]]
+
+*** Source Blocks
+
+#+begin_src bash
+#!/usr/bin/sh
+ls ~/Dropbox
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+  ;; Smarter C-a/C-e for both Emacs and Evil. C-a will jump to indentation.
+  ;; Pressing it again will send you to the true bol. Same goes for C-e, except
+  ;; it will ignore comments+trailing whitespace before jumping to eol.
+  (map! :gi "C-a" #'doom/backward-to-bol-or-indent
+        :gi "C-e" #'doom/forward-to-last-non-comment-or-eol
+        ;; Standardizes the behavior of modified RET to match the behavior of
+        ;; other editors, particularly Atom, textedit, textmate, and vscode, in
+        ;; which ctrl+RET will add a new "item" below the current one and
+        ;; cmd+RET (Mac) / meta+RET (elsewhere) will add a new, blank line below
+        ;; the current one.
+        :gni [C-return]    #'+default/newline-below
+        :gni [C-S-return]  #'+default/newline-above
+        (:when IS-MAC
+          :gni [s-return]    #'+default/newline-below
+          :gni [S-s-return]  #'+default/newline-above)
+        (:unless IS-MAC
+          :gni [M-return]    #'+default/newline-below
+          :gni [M-S-return]  #'+default/newline-above))
+#+end_src
+*** Equations - not working at the moment, probably my fault
+
+If $a^2=b$ and \( b=2 \), then the solution must be either
+$$a=+\sqrt{2}$$ or \[ a=-\sqrt{2} \]
+
+\begin{equation}
+\label{eq:1}
+C = W\log_{2} (1+\mathrm{SNR})
+\end{equation}
+
+\begin{equation} \label{eq:2} C = Wlog2 (1+\mathrm{SNR}) \end{equation}
+
+#+begin_equation
+(x +1)/2
+#+end_equation
+*** Details disclosure
+
+#+begin_details
+#+begin_summary
+Click here to find out more
+#+end_summary
+Now you know!
+#+end_details
+
+
+* Pages
+    :PROPERTIES:
+    :EXPORT_HUGO_SECTION: pages
+    :END:
+** About
+:PROPERTIES:
+:EXPORT_FILE_NAME: about
+:EXPORT_DATE: 2019-08-01
+:END:
+Hi, I'm Ian.
+
+* Posts
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: posts
+:END:
+** Hello world
+:PROPERTIES:
+:EXPORT_FILE_NAME: hello
+:EXPORT_DATE: 2019-09-01
+:END:
+
+Hello! Please consider this blog to be in maintenance mode.
+** Permanently Set File-Local Variables in Doom Emacs
+:PROPERTIES:
+:EXPORT_FILE_NAME: local_variables_doom
+:EXPORT_DATE: 2019-09-09
+:END:
+
+From time to time, it is useful to set local variables within an ~org~
+file. For instance, I have a file whose subsections I'd like to occasionally
+encrypt. This being the case, I need to turn off autosave (since this could save
+plain text). To do this for the buffer, I add this to the top:
+
+#+BEGIN_SRC org :tangle no
+# -*- buffer-auto-save-file-name: nil; -*-
+#+END_SRC
+
+Emacs is understandably wary of running elisp simply because it exists in the
+file, however. Upon opening this buffer, it warns:
+
+#+BEGIN_QUOTE
+The local variables list in [filename] contains variables that are
+risky
+#+END_QUOTE
+
+This is followed by a question about allowing them on this occasion only.
+Globally, the level of wariness is controlled by the variable
+~enable-local-variables~, whose explanation is given here: [[https://www.gnu.org/software/emacs/manual/html_node/elisp/File-Local-Variables.html#File-Local-Variables][File Local
+Variables - GNU Emacs Lisp Reference Manual]].
+
+I would, however, like to avoid setting this globally. I'd prefer that Emacs
+adds safe
+variables to a whitelist. I'd consider turning off autosave to be reasonably
+safe, so the first thing I tried was adding it to the whitelist. The safe variable is called
+~safe-local-variable-values~ and is defined in the Emacs installation itself (i.e.
+in ~/usr/local~, where my Emacs installation lives).
+
+Because I use [[https://github.com/hlissner/doom-emacs][Doom Emacs]], I put the following into my ~./config/Doom/config.el~ (which is actually tangled
+from my ~config.org~):
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'safe-local-variable-values '("buffer-auto-save-filename" . "nil") t)
+#+END_SRC
+
+But this didn't work. At first, I thought that perhaps the above elisp is running too
+early, as the list when I inspected it after opening Emacs showed only the
+original values (referring to variables relevant to other files). How late, I
+wondered, could I make this code run? After the ~org~ module is loaded?[fn:org]
+
+[fn:org] The ~after! org~ is a Doom wrapper function that ensures the elisp
+codes that follows is evaluated after a given module is loaded.
+
+
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (add-to-list 'safe-local-variable-values '("buffer-auto-save-filename" . "nil") t)
+  )
+#+END_SRC
+
+Still no luck.
+
+It turns out that ~safe-local-variables~ was being set in
+~/.config/Doom/init.el~--this should have been before my ~config.el~, and yet my
+~config.el~ code was not modifying the variable.
+
+Fine, I thought--I'll carefully edit the part of the ~init.el~ setting
+~safe-local-variables~. But I still saw the same behaviour in my target file: I
+was being asked, temporarily, if I wanted to permit the variable
+~buffer-auto-save-file-name~ to be set. Why wouldn't my method work? I wasn't
+sure. But since Doom had set the variables successfully before from other ~org~
+files previousl, writing them to ~safe-local-variables~ in its own ~init.el~, I
+had a look at how those files set variables and I saw that it was done in a
+slightly different manner:
+
+: * Local variables :noexport:
+: # local variables:
+: # +org-export-directory: "projects/"
+: # end:
+
+I tried this with my problematic file. First schoolboy error: I didn't place
+it at the end of the file. This fixed, I tried again. But Emacs persisted in
+prompting me to only allow setting ~buffer-auto-save-filename~ temporarily. Why not permanently?
+
+I went back and looked again at the elisp in my ~/.config/Doom/init.el~ and
+realised that I had put ~NIL~ in quotes. Second schoolboy error. Of course, it
+shouldn't have quotes---it needs to be plain old ~NIL~. The correct code in the
+~.init~ is thus:
+
+#+BEGIN_SRC elisp :tangle no
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("427fa665823299f8258d8e27c80a1481edbb8f5463a6fb2665261e9076626710" "e838d6375a73fda607820c65eb3ea1f9336be7bd9a5528c9161e10c4aa663b5b" "80365dd15f97396bdc38490390c23337063c8965c4556b8f50937e63b5e9a65c" "fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default)))
+ '(safe-local-variable-values
+   (quote
+    ((+org-export-directory . "projects/")
+     (+org-export-directory . "projects/cccuWorkloadModel")
+     (+org-export-dir . "projects/cccuWorkloadModel")
+     (buffer-auto-save-file-name . nil)))))
+#+END_SRC
+
+
+** TODO Blogging with Emacs, Hugo and Org Mode                       :setup:
+:PROPERTIES:
+:EXPORT_FILE_NAME: settingUpBlog
+:EXPORT_DATE: 2019-09-01
+:END:
+
+This blog is brand--not to say spanking--new. For a while, this summer, I was in
+the process of transitioning out of my current role (a story another time), I
+was thinking about updating my web presence. Not that I don't have one. I've
+been on the [[https://twitter.com/ian_hocking?lang=en-gb][the Twitter]] and Facebook for a long old time, and my blog dates back
+to [[http://ianhocking.com/2003/02/heres-email-from-my-dad-that-i-just.html][2003]]. But my online identity focused mainly my fiction writing. I want to change its
+focus to coding, which, I hope, is the direction in which I'm now
+heading.
+
+Like James May in [[https://www.youtube.com/watch?v=77BG4qkviWc][the Reassembler]], I want to slowly take this blog apart and put
+it back together again.
+
+My first tool is [[https://www.gnu.org/software/emacs/][Emacs]][fn:emacs], free software dating from the 1970s. I came to
+Emacs from [[https://www.vim.org][Vim]]. I've written elsewhere about my preference for text-based (i.e.
+non-GUI) tools, and I have an idea for a post to this blog where I talk about my
+current Emacs setup.
+
+Next is a static website generation framework called [[https://gohugo.io][Hugo]]. A key aim of the Hugo
+project is that sites are pre-compiled. The server need only offer HTML, and
+very little in-the-moment calculation happens on the server or the browser. This
+means small, fast websites. Hugo has an active theming community, too. It never
+ceases to amaze me that folks around the world are willing to offer their time
+to such projects--not just the themes, of course, but the Hugo project itself.
+
+Last, I'll be leaning heavily on [[https://orgmode.org][org-mode]], a part of Emacs that started as a
+fancy outlining framework but became a wonderful system for storing, organising
+and exporting information. Contributors have created adjuncts to org-mode, and
+one such is ox-hugo[fn:oxhugo]
+
+*** Org Mode Blogging Solutions
+
+
+
+
+
+
+
+[fn:emacs] GNU Emacs 26.2, running on macOS 10.14.6.
+
+
+[fn:oxhugo] I believe the ~ox~ part stands for org export.
+
+
+*** Emacs
+
+- Auto export
+
+*** Org Mode
+
+- Literate coding
+
+*** Static Speed
+
+*** Installation
+
+
+*** My Old Blog
+
+- It's still there
+  - .htaccess issues
+
+*** Tags
+
+- Probably don't need them
+** TODO The Crack of Doom                                            :setup:
+:PROPERTIES:
+:EXPORT_FILE_NAME: doomSetup
+:EXPORT_DATE: 2019-09-01
+:END:
+
+** DONE Fix .httaccess!
+:PROPERTIES:
+:EXPORT_FILE_NAME: fix-dot-httaccess
+:END:
+So this hasn't quite worked yet! It looks as though it was working as I wanted
+it, but then I needed to include the WordPress settings back and that seems have
+created a problem. Maybe move my new rule to the end of the file.
+
+Also, fix the image, which is no longer appearing on the web version of my 'how
+to write on this blog'.

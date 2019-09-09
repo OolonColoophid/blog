@@ -1,0 +1,4 @@
+* Inbox
+** TODO Does ox-hugo really forbid zero posts?             :programmer@blog:
+
+[[file:~/Dropbox/org/blog/programmer/allPosts.org::*Blogging with Emacs, Hugo and Org Mode][Blogging with Emacs, Hugo and Org Mode]]

@@ -1,0 +1,99 @@
+baseURL = "http://ianhocking.com/blog"
+languageCode = "en"
+title = "Ian Hocking"
+theme = "hugo-coder"
+defaultcontentlanguage = "en"
+
+paginate = 20
+canonifyurls = false
+
+# Syntax highlighting
+# See https://gohugo.io/content-management/syntax-highlighting/
+# The full set of supported options for Pygments is: encoding, outencoding,
+# nowrap, full, title, style, noclasses, classprefix, cssclass, cssstyles,
+# prestyles, linenos, hl_lines, linenostart, linenostep, linenospecial,
+# nobackground, lineseparator, lineanchors, linespans, anchorlinenos, startinline.
+# See the Pygments HTML Formatter Documentation for details.
+
+pygmentsStyle = "trac"
+pygmentsCodefences = true
+pygmentscodefencesguesssyntax = true
+pygmentsOptions = "linenos=table"
+
+[params]
+    author = "Ian Hocking"
+    info = "Code, Thoughts and Worlds"
+    avatarurl = "images/ianHocking.jpg"
+    description = "Ian Hocking's personal website"
+    keywords = "blog,developer,personal"
+    # highlightjs = true
+    # highlightjsstyle = "zenburn"
+    # highlightjslanguages = ["lisp"]
+    footercontent = "hic et nunc"
+    hidecredits = false
+    hidecopyright = false
+
+    rtl = false
+
+    math = true
+
+[blackfriday]
+    plainIDAnchors = false
+
+# [params.social]
+    # github = "OolonColoophid"
+    # linkedin = "ianhocking"
+   
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/OolonColoophid/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fab fa-linkedin fa-2x"
+    weight = 2
+    url = "https://uk.linkedin.com/in/ianhocking"
+[[params.social]]
+    name = "Google Scholar"
+    icon = "fas fa-university fa-2x"
+    weight = 3
+    url = "https://scholar.google.co.uk/citations?user=901ZnqMAAAAJ&hl=en"
+[[params.social]]
+    name = "Books"
+    icon = "fas fa-book fa-2x"
+    weight = 4
+    url = "https://www.amazon.co.uk/s?k=ian+hocking&s=review-rank&qid=1567618369&ref=sr_st_review-rank"
+[[params.social]]
+    name = "Email"
+    icon = "fas fa-envelope fa-2x"
+    weight = 5
+    url = "mailto:ihocking@gmail.com"
+
+# [[params.social]]
+#     name = "Gitlab"
+#     icon = "fab fa-gitlab fa-2x"
+#     weight = 2
+#     url = "https://gitlab.com/johndoe/"
+# # [[params.social]]
+#     name = "Twitter"
+#     icon = "fab fa-twitter fa-2x"
+#     weight = 3
+#     url = "https://twitter.com/johndoe/"
+
+[[menu.main]]
+    name = "Posts"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+[[menu.main]]
+    name = "Pages"
+    identifier = "pages"
+    weight = 200
+    url = "/pages/"
+[[menu.main]]
+    name = "About"
+    identifier = "about"
+    weight = 300
+    url = "/pages/about"

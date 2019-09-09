@@ -1,1 +1,2 @@
 deploy.sh # My server deploy script, which includes my SSH username
+public    # No need to see these files - they're on the web, after all, at ianhocking.com

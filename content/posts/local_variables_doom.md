@@ -2,10 +2,11 @@
 title = "Permanently Set File-Local Variables in Doom Emacs"
 author = ["Dr Ian Hocking"]
 date = 2019-09-09
+lastmod = 2019-09-10T10:23:51+01:00
 draft = false
 +++
 
-From time to time, it is useful to set local variables within an `org`
+Occasionally, it is useful to set local variables within an `org`
 file. For instance, I have a file whose subsections I'd like to occasionally
 encrypt. This being the case, I need to turn off autosave (since this could save
 plain text). To do this for the buffer, I add this to the top:

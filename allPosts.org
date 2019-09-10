@@ -549,7 +549,7 @@ to make a commit--this will get pushed to my [[https://github.com/OolonColoophid
 an the site uploaded to [[http://ianhocking.com][ianhocking.com]].
 
 
-[fn:git] Git is a system for tracking changes to files.
+[fn:git] Git is a system for tracking file changes.
 
 [fn:write] Or 'write the buffer to disk' in Emacs-speak.
 

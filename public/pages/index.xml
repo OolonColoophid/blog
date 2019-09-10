@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Ian Hocking</title>
-    <link>https://ianhocking.com/blog/pages/</link>
+    <link>ianhocking.com/blog/pages/</link>
     <description>Recent content in Pages on Ian Hocking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="https://ianhocking.com/blog/pages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="ianhocking.com/blog/pages/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://ianhocking.com/blog/pages/about/</link>
+      <link>ianhocking.com/blog/pages/about/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>https://ianhocking.com/blog/pages/about/</guid>
+      <guid>ianhocking.com/blog/pages/about/</guid>
       <description>Hi, I&amp;rsquo;m Ian.</description>
     </item>
     

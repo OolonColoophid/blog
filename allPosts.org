@@ -446,7 +446,7 @@ rsync -r --verbose --compress --human-readable --progress --recursive public/. $
 #+END_SRC
 
 
-*** Why Change?
+*** Why the Change?
 
 Until yesterday, the [[https://git-scm.com/][Git]][fn:git] repository containing
 the source of my site was private, but I decided that I wanted to put into the

@@ -1,9 +1,14 @@
+
+.DS_Store
+
 deploy.sh # My server deploy script
 
 todo.org
 notes.org
 
-content   # Duplication of the website itself
-resources # Duplication
-public    # No need to see these files - they're on the web, after all, at ianhocking.com
+content     # Duplication of the website itself
+resources   # Duplication
+public      # No need to see these files - they're on the web, after all, at ianhocking.com
+archetypes  # Not needed
+static      # Not needed
 logs

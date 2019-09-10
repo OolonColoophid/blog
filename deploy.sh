@@ -12,6 +12,7 @@ server=ianhocking.com
 blogDir="/Users/ianuser/Dropbox/org/blog/programmer"
 
 # Check where this script is running from.
+
 if [ -z "$GIT_DIR" ] ; then
 
     echo "Run deploy.sh (for ianhocking.com/blog) from ~/Dropbox/org/" >&2

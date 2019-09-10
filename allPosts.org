@@ -546,7 +546,7 @@ this in a dotfile in the blog directory.
 :EXPORT_DATE: 2019-09-01
 :END:
 
-** DONE Fix .httaccess!
+** TODO Fix .httaccess!
 :PROPERTIES:
 :EXPORT_FILE_NAME: fix-dot-httaccess
 :END:

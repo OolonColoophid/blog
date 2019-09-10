@@ -83,14 +83,13 @@ This section won't appear explicitly on my website, but I'd like it to be
 here so I can check out how my 'style guide' looks on the web.
 
 This page exists in a Hugo Section (e.g. pages, posts) called 'Hidden'.
-Access it from: [[http://ianhocking.com/blog/hidden/style/]]
+Access it from: [[https://ianhocking.com/blog/hidden/style/]]
 
 ** Style Guide
 :PROPERTIES:
 :EXPORT_FILE_NAME: style
 :EXPORT_DATE: 2019-08-01
 :END:
-
 
 Let's read about how to write posts in Ox-Hugo--after the jump. (This will
 probably only work in the RSS.)
@@ -322,6 +321,7 @@ shouldn't have quotes---it needs to be plain old ~NIL~. The correct code in the
 #+END_SRC
 
 
+
 ** TODO Blogging with Emacs, Hugo and Org Mode                       :setup:
 :PROPERTIES:
 :EXPORT_FILE_NAME: settingUpBlog
@@ -404,7 +404,7 @@ that is passed to an ~org~ module called
 [[https://daringfireball.net/projects/markdown/][Markdown]] files, which are then
 processed by a static website generation framework called
 [[https://gohugo.io/getting-started/][Hugo]]. It goes without saying that these
-are all fantatic, free tools.
+are all fantastic, free tools.
 
 *** My Prior Workflow
 
@@ -444,6 +444,7 @@ cd $blogDir && hugo || echo "Cannot cd to blog directory $blogDir"
 # Upload
 rsync -r --verbose --compress --human-readable --progress --recursive public/. $username@$server:public_html/blog/
 #+END_SRC
+
 
 *** Why Change?
 
@@ -510,18 +511,43 @@ When I commit a change to the repository, I'd like ~git commit~ to run the hook
 [[gitPost][post-commit]]. This hook will itself call ~git push~, which will notice the
 [[gitPre][pre-push]] hook and then run [[deploy.sh][my deployment script]].
 
+It's vitally important that the deployment script itself doesn't make changes to
+the working tree, or we'll end up in a situation where Git branches diverge--a
+difficult error to troubleshoot. For this reason, my ~.gitignore~ excludes:
+~content/~, ~public~ and ~logs~.
+~
+
 #+NAME: gitPost
 #+CAPTION: .git/hooks/post-commit
-#+INCLUDE: ".git/hooks/post-commit" src init
+#+BEGIN_SRC sh
+#!/bin/sh
+
+{ echo '-- ' &&
+	date &&
+	echo 'Git hook .git/hooks/post-commit executed by git-commit' &&
+	echo 'Hook will push master branch to remote origin' ; } >> /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+
+git push origin master
+
+#+END_SRC
 
 #+NAME: gitPre
 #+CAPTION: .git/hooks/pre-push
-#+INCLUDE: ".git/hooks/pre-push" src init
+#+BEGIN_SRC sh
+#!/bin/sh
+
+{ echo '-- ' &&
+	date &&
+	echo 'Git hook .git/hooks/pre-push executed by git-push' &&
+	echo 'Hook will call deploy.sh' ; } >> /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+
+/Users/ianuser/Dropbox/org/blog/programmer/deploy.sh
+#+END_SRC
 
 Finally, having turned off ~org-hugo-auto-export-mode~ (see
 [[https://ox-hugo.scripter.co/doc/auto-export-on-saving/][here]]), I'm now able
 to make a commit--this will get pushed to my [[https://github.com/OolonColoophid][Github repository]], the site built,
-an the site uploaded to [[ianhocking.com][ianhocking.com]].
+an the site uploaded to [[http://ianhocking.com][ianhocking.com]].
 
 
 [fn:git] Git is a system for tracking changes to files.
@@ -546,7 +572,7 @@ this in a dotfile in the blog directory.
 :EXPORT_DATE: 2019-09-01
 :END:
 
-** TODO Fix httaccess
+** TODO Fix .httaccess
 :PROPERTIES:
 :EXPORT_FILE_NAME: fix-dot-httaccess
 :EXPORT_DATE: 2019-09-10

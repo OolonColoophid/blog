@@ -546,10 +546,12 @@ this in a dotfile in the blog directory.
 :EXPORT_DATE: 2019-09-01
 :END:
 
-** TODO Fix .httaccess!
+** TODO Fix httaccess
 :PROPERTIES:
 :EXPORT_FILE_NAME: fix-dot-httaccess
+:EXPORT_DATE: 2019-09-10
 :END:
+
 So this hasn't quite worked yet! It looks as though it was working as I wanted
 it, but then I needed to include the WordPress settings back and that seems have
 created a problem. Maybe move my new rule to the end of the file.

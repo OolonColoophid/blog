@@ -571,7 +571,7 @@ a dotfile in the blog directory (~.dirs-locals.el~).
 :EXPORT_DATE: 2019-09-01
 :END:
 
-** TODO Fix .httaccess
+** TODO Fix .httaccess error
 :PROPERTIES:
 :EXPORT_FILE_NAME: fix-dot-httaccess
 :END:

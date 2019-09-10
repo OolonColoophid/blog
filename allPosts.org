@@ -544,8 +544,7 @@ git push origin master
 /Users/ianuser/Dropbox/org/blog/programmer/deploy.sh
 #+END_SRC
 
-Finally, having turned off ~org-hugo-auto-export-mode~ (see
-[[https://ox-hugo.scripter.co/doc/auto-export-on-saving/][here]]), I'm now able
+Finally, I'm now able
 to make a commit--this will get pushed to my [[https://github.com/OolonColoophid][Github repository]], the site built,
 an the site uploaded to [[http://ianhocking.com][ianhocking.com]].
 
@@ -556,8 +555,8 @@ an the site uploaded to [[http://ianhocking.com][ianhocking.com]].
 
 [fn:gitH] Actually, any number of subcommands.
 
-[fn:ox-auto] This is set with the variable ~org-hugo-auto-export-mode~. I'd set
-this in a dotfile in the blog directory.
+[fn:ox-auto] This is set with the variable ~org-hugo-auto-export-mode~  I've in
+a dotfile in the blog directory (~.dirs-locals.el~).
 
 
 ** TODO Https and Http with Hugo :https:

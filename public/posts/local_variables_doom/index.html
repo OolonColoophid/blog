@@ -12,15 +12,15 @@
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Permanently Set File-Local Variables in Doom Emacs"/>
 <meta name="twitter:description" content="From time to time, it&rsquo;s useful to set local variables within an org file. For instance, I have a file whose subsections I&rsquo;d like to encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
-1  # -*- buffer-auto-save-file-name: nil; -*-   Emacs is understandably wary of running elisp simply because it exists in the file, however."/>
+# -*- buffer-auto-save-file-name: nil; -*- Emacs is understandably wary of running elisp simply because it exists in the file, however."/>
 
     <meta property="og:title" content="Permanently Set File-Local Variables in Doom Emacs" />
 <meta property="og:description" content="From time to time, it&rsquo;s useful to set local variables within an org file. For instance, I have a file whose subsections I&rsquo;d like to encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
-1  # -*- buffer-auto-save-file-name: nil; -*-   Emacs is understandably wary of running elisp simply because it exists in the file, however." />
+# -*- buffer-auto-save-file-name: nil; -*- Emacs is understandably wary of running elisp simply because it exists in the file, however." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="//ianhocking.com/blog/posts/local_variables_doom/" />
-<meta property="article:published_time" content="2019-09-09T00:00:00&#43;01:00"/>
-<meta property="article:modified_time" content="2019-09-10T10:28:47&#43;01:00"/>
+<meta property="article:published_time" content="2019-09-09T00:00:00+01:00" />
+<meta property="article:modified_time" content="2019-09-10T10:28:47+01:00" />
 
 
     
@@ -41,7 +41,7 @@
     
       
       
-      <link rel="stylesheet" href="/blog/css/coder.min.2510ea55d66952b990bd4947abff4c5169e589126ae68c4c58b74d1ef7580efd.css" integrity="sha256-JRDqVdZpUrmQvUlHq/9MUWnliRJq5oxMWLdNHvdYDv0=" crossorigin="anonymous" media="screen" />
+      <link rel="stylesheet" href="/blog/css/coder.min.54164a09bf154fdbc174f6d1f6f22b8b09773eaf85dd6099d9528df37516f6fb.css" integrity="sha256-VBZKCb8VT9vBdPbR9vIriwl3Pq&#43;F3WCZ2VKN83UW9vs=" crossorigin="anonymous" media="screen" />
     
 
     
@@ -55,7 +55,7 @@
     <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.58.1" />
   </head>
 
   <body class=" ">
@@ -120,14 +120,7 @@
 file. For instance, I have a file whose subsections I&rsquo;d like to
 encrypt. This being the case, I need to turn off autosave (since this could save
 plain text). To do this for the buffer, I add this to the top:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org"><span style="color:#998;font-style:italic"># -*- buffer-auto-save-file-name: nil; -*-</span></code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org"><span style="color:#998;font-style:italic"># -*- buffer-auto-save-file-name: nil; -*-</span></code></pre></div>
 <p>Emacs is understandably wary of running elisp simply because it exists in the
 file, however. Upon opening this buffer, it warns:</p>
 
@@ -150,30 +143,14 @@ in <code>/usr/local</code>, where my Emacs installation lives).</p>
 
 <p>Because I use <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, I put the following into my <code>./config/Doom/config.el</code> (which is actually tangled
 from my <code>config.org</code>):</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">  (<span style="color:#008080">add-to-list</span> <span style="color:#b84">&#39;safe-local-variable-values</span> <span style="font-weight:bold">&#39;</span>(<span style="color:#b84">&#34;buffer-auto-save-filename&#34;</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;nil&#34;</span>) <span style="color:#008080">t</span>)</code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">  (<span style="color:#008080">add-to-list</span> <span style="color:#b84">&#39;safe-local-variable-values</span> <span style="font-weight:bold">&#39;</span>(<span style="color:#b84">&#34;buffer-auto-save-filename&#34;</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;nil&#34;</span>) <span style="color:#008080">t</span>)</code></pre></div>
 <p>But this didn&rsquo;t work. At first, I thought that perhaps the above elisp is running too
 early, as the list when I inspected it after opening Emacs showed only the
 original values (referring to variables relevant to other files). How late, I
 wondered, could I make this code run? After the <code>org</code> module is loaded?<sup class="footnote-ref" id="fnref:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1"><a href="#fn:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1">1</a></sup></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#008080">after!</span> <span style="color:#008080">org</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#008080">after!</span> <span style="color:#008080">org</span>
   (<span style="color:#008080">add-to-list</span> <span style="color:#b84">&#39;safe-local-variable-values</span> <span style="font-weight:bold">&#39;</span>(<span style="color:#b84">&#34;buffer-auto-save-filename&#34;</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;nil&#34;</span>) <span style="color:#008080">t</span>)
-  )</code></pre></td></tr></table>
-</div>
-</div>
+  )</code></pre></div>
 <p>Still no luck.</p>
 
 <p>It turns out that <code>safe-local-variables</code> was being set in
@@ -188,20 +165,10 @@ sure. But since Doom had set the variables successfully before from other <code>
 files previousl, writing them to <code>safe-local-variables</code> in its own <code>init.el</code>, I
 had a look at how those files set variables and I saw that it was done in a
 slightly different manner:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">* Local variables :noexport:
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">* Local variables :noexport:
 # local variables:
 # +org-export-directory: &#34;projects/&#34;
-# end:</code></pre></td></tr></table>
-</div>
-</div>
+# end:</code></pre></div>
 <p>I tried this with my problematic file. First schoolboy error: I didn&rsquo;t place
 it at the end of the file. This fixed, I tried again. But Emacs persisted in
 prompting me to only allow setting <code>buffer-auto-save-filename</code> temporarily. Why not permanently?</p>
@@ -210,25 +177,7 @@ prompting me to only allow setting <code>buffer-auto-save-filename</code> tempor
 realised that I had put <code>NIL</code> in quotes. Second schoolboy error. Of course, it
 shouldn&rsquo;t have quotes&mdash;it needs to be plain old <code>NIL</code>. The correct code in the
 <code>.init</code> is thus:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(<span style="color:#008080">custom-set-variables</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(<span style="color:#008080">custom-set-variables</span>
  <span style="color:#998;font-style:italic">;; custom-set-variables was added by Custom.</span>
  <span style="color:#998;font-style:italic">;; If you edit it by hand, you could mess it up, so be careful.</span>
  <span style="color:#998;font-style:italic">;; Your init file should contain only one such instance.</span>
@@ -241,9 +190,7 @@ shouldn&rsquo;t have quotes&mdash;it needs to be plain old <code>NIL</code>. The
     ((<span style="color:#008080">+org-export-directory</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/&#34;</span>)
      (<span style="color:#008080">+org-export-directory</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/cccuWorkloadModel&#34;</span>)
      (<span style="color:#008080">+org-export-dir</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/cccuWorkloadModel&#34;</span>)
-     (<span style="color:#008080">buffer-auto-save-file-name</span> <span style="font-weight:bold">.</span> <span style="color:#008080">nil</span>)))))</code></pre></td></tr></table>
-</div>
-</div><div class="footnotes">
+     (<span style="color:#008080">buffer-auto-save-file-name</span> <span style="font-weight:bold">.</span> <span style="color:#008080">nil</span>)))))</code></pre></div><div class="footnotes">
 
 <hr />
 

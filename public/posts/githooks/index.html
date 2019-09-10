@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Ian Hocking">
+    <meta name="description" content="Ian Hocking&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using Git Hooks"/>
+<meta name="twitter:description" content="Background This blog is produced from a plaintext Org mode file that is passed to an org module called ox-hugo. Essentially, ox-hugo looks at the org file and produces Markdown, which is then processed by a static website generation framework called Hugo.
+My Original Workflow When ready to publish, I would save the org file1&ndash;this would trigger an export process that produced the Markdown files. This would result in a Hugo-friendly set of files that Hugo could then chew through to produce a complete static website."/>
+
+    <meta property="og:title" content="Using Git Hooks" />
+<meta property="og:description" content="Background This blog is produced from a plaintext Org mode file that is passed to an org module called ox-hugo. Essentially, ox-hugo looks at the org file and produces Markdown, which is then processed by a static website generation framework called Hugo.
+My Original Workflow When ready to publish, I would save the org file1&ndash;this would trigger an export process that produced the Markdown files. This would result in a Hugo-friendly set of files that Hugo could then chew through to produce a complete static website." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//ianhocking.com/blog/posts/githooks/" />
+<meta property="article:published_time" content="2019-09-10T00:00:00+01:00" />
+<meta property="article:modified_time" content="2019-09-10T13:37:43+01:00" />
+
+
+    
+      <base href="//ianhocking.com/blog/posts/githooks/">
+    
+    <title>
+  Using Git Hooks · Dr Ian Hocking
+</title>
+
+    
+      <link rel="canonical" href="//ianhocking.com/blog/posts/githooks/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/blog/css/coder.min.54164a09bf154fdbc174f6d1f6f22b8b09773eaf85dd6099d9528df37516f6fb.css" integrity="sha256-VBZKCb8VT9vBdPbR9vIriwl3Pq&#43;F3WCZ2VKN83UW9vs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.58.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="//ianhocking.com/blog">
+      Dr Ian Hocking
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/blog/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/blog/pages/">Pages</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/blog/pages/about">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Using Git Hooks</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-09-10T00:00:00&#43;01:00'>
+                September 10, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/blog/tags/git/">git</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<h2 id="background:28789f637d8bda1ba79103a2d636288a">Background</h2>
+
+<p>This blog is produced from a plaintext <a href="https://orgmode.org/">Org mode</a> file
+that is passed to an <code>org</code> module called
+<a href="https://ox-hugo.scripter.co/">ox-hugo</a>. Essentially, <code>ox-hugo</code> looks at the
+<code>org</code> file and produces
+<a href="https://daringfireball.net/projects/markdown/">Markdown</a>, which is then
+processed by a static website generation framework called
+<a href="https://gohugo.io/getting-started/">Hugo</a>.</p>
+
+<h2 id="my-original-workflow:28789f637d8bda1ba79103a2d636288a">My Original Workflow</h2>
+
+<p>When ready to publish, I would save the <code>org</code> file<sup class="footnote-ref" id="fnref:28789f637d8bda1ba79103a2d636288a:fn-1"><a href="#fn:28789f637d8bda1ba79103a2d636288a:fn-1">1</a></sup>&ndash;this would trigger
+an export process that produced the Markdown files. This would result in a
+Hugo-friendly set of files that Hugo could then chew through to produce a
+complete static website. I put together this workflow based largely on this
+great post from Peter Cheng,
+<a href="http://petercheng.net/posts/website-v2-setup/">Publishing a Website from Emacs
+and Hugo</a>.</p>
+
+<p><a id="code-snippet--deploy.sh"></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold">#!/usr/bin/env bash
+</span><span style="color:#999;font-weight:bold"></span>
+<span style="color:#998;font-style:italic"># Sync /public (containing finalised HTML and resources)</span>
+<span style="color:#998;font-style:italic"># to webserver (e.g. ianhocking.com)</span>
+
+<span style="color:#998;font-style:italic"># e - exit if command exits with error</span>
+<span style="color:#998;font-style:italic"># u - treat unset variables as an error</span>
+<span style="color:#999">set</span> -eu
+
+<span style="color:#008080">username</span><span style="font-weight:bold">=</span><span style="color:#b84">&#34;username&#34;</span>
+<span style="color:#008080">server</span><span style="font-weight:bold">=</span><span style="color:#b84">&#34;servername&#34;</span>
+
+<span style="color:#008080">blogDir</span><span style="font-weight:bold">=</span><span style="color:#b84">&#34;/Users/ianuser/Dropbox/org/blog/programmer&#34;</span>
+
+<span style="color:#998;font-style:italic"># Remove previous build of site</span>
+rm -r <span style="color:#b84">&#34;</span><span style="color:#008080">$blogDir</span><span style="color:#b84">/public&#34;</span> <span style="font-weight:bold">||</span> <span style="color:#999">echo</span> <span style="color:#b84">&#34;No /public directory in blog directory </span><span style="color:#008080">$blogDir</span><span style="color:#b84"> to delete&#34;</span>
+
+<span style="color:#998;font-style:italic"># Build</span>
+<span style="color:#999">cd</span> <span style="color:#008080">$blogDir</span> <span style="font-weight:bold">&amp;&amp;</span> hugo <span style="font-weight:bold">||</span> <span style="color:#999">echo</span> <span style="color:#b84">&#34;Cannot cd to blog directory </span><span style="color:#008080">$blogDir</span><span style="color:#b84">&#34;</span>
+
+<span style="color:#998;font-style:italic"># Upload</span>
+rsync -r --verbose --compress --human-readable --progress --recursive public/. <span style="color:#008080">$username</span>@<span style="color:#008080">$server</span>:public_html/blog/</code></pre></div>
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--deploy.sh">Code Snippet 1</a></span>:
+  Contents of the file <code>deploy.sh</code>
+</div>
+
+<h2 id="why-change:28789f637d8bda1ba79103a2d636288a">Why Change?</h2>
+
+<p>Until yesterday, the <a href="https://git-scm.com/">Git</a><sup class="footnote-ref" id="fnref:28789f637d8bda1ba79103a2d636288a:fn-2"><a href="#fn:28789f637d8bda1ba79103a2d636288a:fn-2">2</a></sup> repository containing
+the source of my site was private, but I decided that I wanted to put into the
+<code>ox-hugo</code> <a href="https://ox-hugo.scripter.co/doc/examples/">showcase</a>.</p>
+
+<h2 id="git-hooks:28789f637d8bda1ba79103a2d636288a">Git Hooks</h2>
+
+<p>Git allows <code>hooks</code>, which are simply scripts run by Git<sup class="footnote-ref" id="fnref:28789f637d8bda1ba79103a2d636288a:fn-3"><a href="#fn:28789f637d8bda1ba79103a2d636288a:fn-3">3</a></sup>. You can find a
+fuller explanation of them in various places.
+<a href="https://hackernoon.com/automate-your-workflow-with-git-hooks-fef5d9b2a58c">Automate
+Your Workflow with Git Hooks</a> is a good one.</p>
+
+<p>Essentially, with the directory holding your tracked files, you&rsquo;ll see
+<code>.git/hooks</code>. Inside that, there are the hooks themselves.</p>
+
+<p>Let&rsquo;s take a look at them.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls ~/Dropbox/org/blog/programmer/.git/hooks</code></pre></div>
+<p>Gives us:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">applypatch-msg.sample
+commit-msg.sample
+copy_of_post-update
+fsmonitor-watchman.sample
+post-commit
+post-update
+pre-applypatch.sample
+pre-commit.sample
+pre-push
+pre-push.sample
+pre-rebase.sample
+pre-receive.sample
+prepare-commit-msg.sample
+resources
+update.sample</code></pre></div>
+<p>Some of these hooks are designed to be run by Git running on a server (i.e.
+receiving updates) and others locally (i.e. when sending). You can find more
+about the hooks by reading <a href="https://git-scm.com/docs/githooks">Git - githooks Documentation</a>.</p>
+
+<p>The two hooks I&rsquo;m interested in are <code>post-commit</code> and <code>pre-push</code>. In the
+directory listing above, you can see that both of these have the suffix
+<code>.sample</code> removed; that means that Git will pay attention to them. Additionally,
+to make sure that the hooks (which are simple Bash scripts) execute, we need to
+make sure that execution privileges have been assigned:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/post-commit
+chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/pre-push</code></pre></div>
+<h2 id="my-new-workflow:28789f637d8bda1ba79103a2d636288a">My New Workflow</h2>
+
+<p>When I commit a change to the repository, I&rsquo;d like <code>git commit</code> to run the hook
+<a href="#code-snippet--gitPost">post-commit</a>. This hook will itself call <code>git push</code>, which will notice the
+<a href="#code-snippet--gitPre">pre-push</a> hook and then run <a href="#code-snippet--deploy.sh">my deployment script</a>.</p>
+
+<p><a id="code-snippet--gitPost"></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-init" data-lang="init"><span style="color:#999;font-weight:bold">#!/bin/sh
+</span><span style="color:#999;font-weight:bold"></span>
+<span style="font-weight:bold">{</span> <span style="color:#999">echo</span> <span style="color:#b84">&#39;-- &#39;</span> <span style="font-weight:bold">&amp;&amp;</span>
+	date <span style="font-weight:bold">&amp;&amp;</span>
+	<span style="color:#999">echo</span> <span style="color:#b84">&#39;Git hook .git/hooks/post-commit executed by git-commit&#39;</span> <span style="font-weight:bold">&amp;&amp;</span>
+	<span style="color:#999">echo</span> <span style="color:#b84">&#39;Hook will push master branch to remote origin&#39;</span> ; <span style="font-weight:bold">}</span> &gt;&gt; /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+
+git push origin master</code></pre></div>
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--gitPost">Code Snippet 2</a></span>:
+  .git/hooks/post-commit
+</div>
+
+<p><a id="code-snippet--gitPre"></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-init" data-lang="init"><span style="color:#999;font-weight:bold">#!/bin/sh
+</span><span style="color:#999;font-weight:bold"></span>
+<span style="font-weight:bold">{</span> <span style="color:#999">echo</span> <span style="color:#b84">&#39;-- &#39;</span> <span style="font-weight:bold">&amp;&amp;</span>
+	date <span style="font-weight:bold">&amp;&amp;</span>
+	<span style="color:#999">echo</span> <span style="color:#b84">&#39;Git hook .git/hooks/pre-push executed by git-push&#39;</span> <span style="font-weight:bold">&amp;&amp;</span>
+	<span style="color:#999">echo</span> <span style="color:#b84">&#39;Hook will call deploy.sh&#39;</span> ; <span style="font-weight:bold">}</span> &gt;&gt; /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+
+/Users/ianuser/Dropbox/org/blog/programmer/deploy.sh</code></pre></div>
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--gitPre">Code Snippet 3</a></span>:
+  .git/hooks/pre-push
+</div>
+
+<h2 id="original-workflow:28789f637d8bda1ba79103a2d636288a">Original workflow</h2>
+
+<p>Ox-hugo; deploy.sh</p>
+
+<p>But I now want to have my repo kept uptodate.</p>
+
+<h2 id="git-hooks-1:28789f637d8bda1ba79103a2d636288a">Git Hooks</h2>
+
+<h2 id="turning-off-ox-hugo-export:28789f637d8bda1ba79103a2d636288a">Turning off Ox-Hugo export</h2>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:28789f637d8bda1ba79103a2d636288a:fn-1">Or &lsquo;write the buffer to disk&rsquo; in Emacs-speak.
+ <a class="footnote-return" href="#fnref:28789f637d8bda1ba79103a2d636288a:fn-1"><sup>[return]</sup></a></li>
+<li id="fn:28789f637d8bda1ba79103a2d636288a:fn-2">Git is a system for tracking changes to files.
+ <a class="footnote-return" href="#fnref:28789f637d8bda1ba79103a2d636288a:fn-2"><sup>[return]</sup></a></li>
+<li id="fn:28789f637d8bda1ba79103a2d636288a:fn-3">Actually, any number of subcommands.
+ <a class="footnote-return" href="#fnref:28789f637d8bda1ba79103a2d636288a:fn-3"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>hic et nunc</p>
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & a modified <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

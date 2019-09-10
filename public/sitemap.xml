@@ -4,19 +4,37 @@
   
   <url>
     <loc>//ianhocking.com/blog/</loc>
-    <lastmod>2019-09-10T10:28:47+01:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-10T13:37:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//ianhocking.com/blog/posts/fix-dot-httaccess/</loc>
+    <lastmod>2019-09-10T11:01:48+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//ianhocking.com/blog/posts/</loc>
+    <lastmod>2019-09-10T13:37:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//ianhocking.com/blog/tags/git/</loc>
+    <lastmod>2019-09-10T13:37:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//ianhocking.com/blog/tags/</loc>
+    <lastmod>2019-09-10T13:37:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//ianhocking.com/blog/posts/githooks/</loc>
+    <lastmod>2019-09-10T13:37:43+01:00</lastmod>
   </url>
   
   <url>
     <loc>//ianhocking.com/blog/posts/local_variables_doom/</loc>
     <lastmod>2019-09-10T10:28:47+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//ianhocking.com/blog/posts/</loc>
-    <lastmod>2019-09-10T10:28:47+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -31,8 +49,7 @@
   
   <url>
     <loc>//ianhocking.com/blog/hidden/</loc>
-    <lastmod>2019-09-09T14:04:25+01:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-10T12:23:39+01:00</lastmod>
   </url>
   
   <url>
@@ -43,22 +60,15 @@
   <url>
     <loc>//ianhocking.com/blog/pages/</loc>
     <lastmod>2019-08-01T00:00:00+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>//ianhocking.com/blog/hidden/style/</loc>
-    <lastmod>2019-09-09T14:04:25+01:00</lastmod>
+    <lastmod>2019-09-10T12:23:39+01:00</lastmod>
   </url>
   
   <url>
     <loc>//ianhocking.com/blog/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//ianhocking.com/blog/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

@@ -1,6 +1,6 @@
 * Blog source
 
-I host a blog over at [[http://ianhocking.com]].
+I host a blog over at [[https://ianhocking.com]].
 
 Here you'll find my source files.
 

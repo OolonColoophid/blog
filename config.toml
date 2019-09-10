@@ -1,6 +1,6 @@
 baseURL = "//ianhocking.com/blog"
 languageCode = "en"
-title = "Ian Hocking"
+title = "Dr Ian Hocking"
 theme = "hugo-coder"
 defaultcontentlanguage = "en"
 

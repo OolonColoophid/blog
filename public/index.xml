@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ian Hocking</title>
-    <link>ianhocking.com/blog/</link>
+    <link>//ianhocking.com/blog/</link>
     <description>Recent content on Ian Hocking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="ianhocking.com/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//ianhocking.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Permanently Set File-Local Variables in Doom Emacs</title>
-      <link>ianhocking.com/blog/posts/local_variables_doom/</link>
+      <link>//ianhocking.com/blog/posts/local_variables_doom/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/posts/local_variables_doom/</guid>
+      <guid>//ianhocking.com/blog/posts/local_variables_doom/</guid>
       <description>From time to time, it&amp;rsquo;s useful to set local variables within an org file. For instance, I have a file whose subsections I&amp;rsquo;d like to encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
 1  # -*- buffer-auto-save-file-name: nil; -*-   Emacs is understandably wary of running elisp simply because it exists in the file, however.</description>
     </item>
     
     <item>
       <title>Hello world</title>
-      <link>ianhocking.com/blog/posts/hello/</link>
+      <link>//ianhocking.com/blog/posts/hello/</link>
       <pubDate>Sun, 01 Sep 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/posts/hello/</guid>
+      <guid>//ianhocking.com/blog/posts/hello/</guid>
       <description>Hello! Please consider this blog to be in maintenance mode.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>ianhocking.com/blog/pages/about/</link>
+      <link>//ianhocking.com/blog/pages/about/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/pages/about/</guid>
+      <guid>//ianhocking.com/blog/pages/about/</guid>
       <description>Hi, I&amp;rsquo;m Ian.</description>
     </item>
     
     <item>
       <title>How to Write Posts</title>
-      <link>ianhocking.com/blog/hidden/writingorgtohugo/</link>
+      <link>//ianhocking.com/blog/hidden/writingorgtohugo/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/hidden/writingorgtohugo/</guid>
+      <guid>//ianhocking.com/blog/hidden/writingorgtohugo/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s read about how to write posts in Ox-Hugo&amp;ndash;after the jump. (This will
 probably only work in the RSS.)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Style Guide</title>
-      <link>ianhocking.com/blog/hidden/style/</link>
+      <link>//ianhocking.com/blog/hidden/style/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/hidden/style/</guid>
+      <guid>//ianhocking.com/blog/hidden/style/</guid>
       <description>&lt;p&gt;This page exists in a Hugo Section (e.g. pages, posts) called &amp;lsquo;Hidden&amp;rsquo;. Access
 it from: &lt;a href=&#34;http://ianhocking.com/blog/hidden/style/&#34;&gt;http://ianhocking.com/blog/hidden/style/&lt;/a&gt;&lt;/p&gt;
 

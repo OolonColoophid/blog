@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hiddens on Ian Hocking</title>
-    <link>ianhocking.com/blog/hidden/</link>
+    <link>//ianhocking.com/blog/hidden/</link>
     <description>Recent content in Hiddens on Ian Hocking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="ianhocking.com/blog/hidden/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//ianhocking.com/blog/hidden/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How to Write Posts</title>
-      <link>ianhocking.com/blog/hidden/writingorgtohugo/</link>
+      <link>//ianhocking.com/blog/hidden/writingorgtohugo/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/hidden/writingorgtohugo/</guid>
+      <guid>//ianhocking.com/blog/hidden/writingorgtohugo/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s read about how to write posts in Ox-Hugo&amp;ndash;after the jump. (This will
 probably only work in the RSS.)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Style Guide</title>
-      <link>ianhocking.com/blog/hidden/style/</link>
+      <link>//ianhocking.com/blog/hidden/style/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0100</pubDate>
       
-      <guid>ianhocking.com/blog/hidden/style/</guid>
+      <guid>//ianhocking.com/blog/hidden/style/</guid>
       <description>&lt;p&gt;This page exists in a Hugo Section (e.g. pages, posts) called &amp;lsquo;Hidden&amp;rsquo;. Access
 it from: &lt;a href=&#34;http://ianhocking.com/blog/hidden/style/&#34;&gt;http://ianhocking.com/blog/hidden/style/&lt;/a&gt;&lt;/p&gt;
 

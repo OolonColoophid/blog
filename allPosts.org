@@ -218,7 +218,7 @@ Hello! Please consider this blog to be in maintenance mode.
 :END:
 
 From time to time, it's useful to set local variables within an ~org~
-file. For instance, I have a file whose subsections I'd like to occasionally
+file. For instance, I have a file whose subsections I'd like to
 encrypt. This being the case, I need to turn off autosave (since this could save
 plain text). To do this for the buffer, I add this to the top:
 

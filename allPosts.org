@@ -408,7 +408,7 @@ are all fantatic, free tools.
 
 *** My Prior Workflow
 
-Originally, when ready to publish, I would save the ~org~ file[fn:write]--this would trigger
+Originally, when ready to publish the blog, I would save the ~org~ file[fn:write]--this would trigger
 an export process[fn:ox-auto] that produced the Markdown files. This would result in a
 Hugo-friendly set of files that Hugo could then chew through to produce a
 complete static website. I put together this workflow based largely on this

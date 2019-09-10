@@ -4,3 +4,4 @@ todo.org
 notes.org
 
 public/*    # No need to see these files - they're on the web, after all, at ianhocking.com
+logs/*

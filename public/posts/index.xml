@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Ian Hocking</title>
-    <link>http://ianhocking.com/blog/posts/</link>
+    <link>https://ianhocking.com/blog/posts/</link>
     <description>Recent content in Posts on Ian Hocking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="http://ianhocking.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ianhocking.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Permanently Set File-Local Variables in Doom Emacs</title>
-      <link>http://ianhocking.com/blog/posts/local_variables_doom/</link>
+      <link>https://ianhocking.com/blog/posts/local_variables_doom/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0100</pubDate>
       
-      <guid>http://ianhocking.com/blog/posts/local_variables_doom/</guid>
+      <guid>https://ianhocking.com/blog/posts/local_variables_doom/</guid>
       <description>From time to time, it is useful to set local variables within an org file. For instance, I have a file whose subsections I&amp;rsquo;d like to occasionally encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
 1  # -*- buffer-auto-save-file-name: nil; -*-   Emacs is understandably wary of running elisp simply because it exists in the file, however.</description>
     </item>
     
     <item>
       <title>Hello world</title>
-      <link>http://ianhocking.com/blog/posts/hello/</link>
+      <link>https://ianhocking.com/blog/posts/hello/</link>
       <pubDate>Sun, 01 Sep 2019 00:00:00 +0100</pubDate>
       
-      <guid>http://ianhocking.com/blog/posts/hello/</guid>
+      <guid>https://ianhocking.com/blog/posts/hello/</guid>
       <description>Hello! Please consider this blog to be in maintenance mode.</description>
     </item>
     

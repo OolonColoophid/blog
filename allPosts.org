@@ -135,7 +135,14 @@ To export an org block:
 
 [[/images/foo.png]]
 
-*** Source Blocks
+*** Source Code
+
+**** Inline
+
+
+src_sh[:exports both :results output]{echo -e "test"}
+
+**** Blocks
 
 #+begin_src bash
 #!/usr/bin/sh
@@ -211,7 +218,7 @@ Hi, I'm Ian.
 :END:
 
 Hello! Please consider this blog to be in maintenance mode.
-** Permanently Set File-Local Variables in Doom Emacs
+** Permanently Set File-Local Variables in Doom Emacs :emacs:doom:elisp:
 :PROPERTIES:
 :EXPORT_FILE_NAME: local_variables_doom
 :EXPORT_DATE: 2019-09-09
@@ -384,6 +391,155 @@ one such is ox-hugo[fn:oxhugo]
 *** Tags
 
 - Probably don't need them
+** Using Git Hooks to Automate Blog Publishing                         :git:
+:PROPERTIES:
+:EXPORT_FILE_NAME: gitHooks
+:EXPORT_DATE: 2019-09-10
+:END:
+*** Background
+This blog is produced from a plaintext [[https://orgmode.org/][Org mode]] file
+that is passed to an ~org~ module called
+[[https://ox-hugo.scripter.co/][ox-hugo]]. Essentially, ~ox-hugo~ looks at the
+~org~ file and produces
+[[https://daringfireball.net/projects/markdown/][Markdown]] files, which are then
+processed by a static website generation framework called
+[[https://gohugo.io/getting-started/][Hugo]]. It goes without saying that these
+are all fantatic, free tools.
+
+*** My Prior Workflow
+
+Originally, when ready to publish, I would save the ~org~ file[fn:write]--this would trigger
+an export process[fn:ox-auto] that produced the Markdown files. This would result in a
+Hugo-friendly set of files that Hugo could then chew through to produce a
+complete static website. I put together this workflow based largely on this
+great post from Peter Cheng,
+[[http://petercheng.net/posts/website-v2-setup/][Publishing a Website from Emacs
+and Hugo]].
+
+The Bash script to render and upload the site looks like this:
+
+#+NAME: deploy.sh
+#+CAPTION: Contents of the file ~deploy.sh~
+#+BEGIN_SRC bash
+#!/usr/bin/env bash
+
+# Sync /public (containing finalised HTML and resources)
+# to webserver (e.g. ianhocking.com)
+
+# e - exit if command exits with error
+# u - treat unset variables as an error
+set -eu
+
+username="username"
+server="servername"
+
+blogDir="/Users/ianuser/Dropbox/org/blog/programmer"
+
+# Remove previous build of site
+rm -r "$blogDir/public" || echo "No /public directory in blog directory $blogDir to delete"
+
+# Build
+cd $blogDir && hugo || echo "Cannot cd to blog directory $blogDir"
+
+# Upload
+rsync -r --verbose --compress --human-readable --progress --recursive public/. $username@$server:public_html/blog/
+#+END_SRC
+
+*** Why Change?
+
+Until yesterday, the [[https://git-scm.com/][Git]][fn:git] repository containing
+the source of my site was private, but I decided that I wanted to put into the
+~ox-hugo~ [[https://ox-hugo.scripter.co/doc/examples/][showcase]], so now it's
+available on Github [[https://github.com/OolonColoophid/blog][here]].
+
+*** Git Hooks
+
+Git allows ~hooks~, which are simply scripts run by Git[fn:gitH]. You can find a
+fuller explanation of them in various places.
+[[https://hackernoon.com/automate-your-workflow-with-git-hooks-fef5d9b2a58c][Automate
+Your Workflow with Git Hooks]] is a good one.
+
+Essentially, with the directory holding your tracked files, you'll see
+~.git/hooks~. Inside that, there are the hooks themselves.
+
+Let's take a look at them.
+
+#+BEGIN_SRC bash :exports output :results output
+ls -g ~/Dropbox/org/blog/programmer/.git/hooks
+#+END_SRC
+
+Gives us:
+
+#+RESULTS:
+#+begin_example
+applypatch-msg.sample
+commit-msg.sample
+copy_of_post-update
+fsmonitor-watchman.sample
+post-commit
+post-update
+pre-applypatch.sample
+pre-commit.sample
+pre-push
+pre-push.sample
+pre-rebase.sample
+pre-receive.sample
+prepare-commit-msg.sample
+resources
+update.sample
+#+end_example
+
+Some of these hooks are designed to be run by Git on a server (i.e.
+receiving updates) and others locally (i.e. when sending). The details of which
+hook suits which end of the process are provided by [[https://git-scm.com/docs/githooks][Git - githooks Documentation]].
+
+The two hooks I'm interested in are ~post-commit~ and ~pre-push~. In the
+directory listing above, you can see that both of these have the suffix
+~.sample~ removed; that means that Git will pay attention to them. Additionally,
+to make sure that the hooks execute (which are simple Bash scripts after all), we need to
+make sure that execution privileges have been assigned:
+
+#+BEGIN_SRC bash
+chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/post-commit
+chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/pre-push
+#+END_SRC
+
+*** My New Workflow
+
+When I commit a change to the repository, I'd like ~git commit~ to run the hook
+[[gitPost][post-commit]]. This hook will itself call ~git push~, which will notice the
+[[gitPre][pre-push]] hook and then run [[deploy.sh][my deployment script]].
+
+#+NAME: gitPost
+#+CAPTION: .git/hooks/post-commit
+#+INCLUDE: ".git/hooks/post-commit" src init
+
+#+NAME: gitPre
+#+CAPTION: .git/hooks/pre-push
+#+INCLUDE: ".git/hooks/pre-push" src init
+
+Finally, having turned off ~org-hugo-auto-export-mode~ (see
+[[https://ox-hugo.scripter.co/doc/auto-export-on-saving/][here]]), I'm now able
+to make a commit--this will get pushed to my [[https://github.com/OolonColoophid][Github repository]], the site built,
+an the site uploaded to [[ianhocking.com][ianhocking.com]].
+
+
+[fn:git] Git is a system for tracking changes to files.
+
+[fn:write] Or 'write the buffer to disk' in Emacs-speak.
+
+[fn:gitH] Actually, any number of subcommands.
+
+[fn:ox-auto] This is set with the variable ~org-hugo-auto-export-mode~. I'd set
+this in a dotfile in the blog directory.
+
+
+** TODO Https and Http with Hugo :https:
+:PROPERTIES:
+:EXPORT_FILE_NAME: httpHttpsHugo
+:EXPORT_DATE: 2019-09-10
+:END:
+
 ** TODO The Crack of Doom                                            :setup:
 :PROPERTIES:
 :EXPORT_FILE_NAME: doomSetup

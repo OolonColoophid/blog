@@ -2,12 +2,9 @@
 title = "Style Guide"
 author = ["Dr Ian Hocking"]
 date = 2019-08-01
-lastmod = 2019-09-09T14:04:25+01:00
+lastmod = 2019-09-10T12:23:39+01:00
 draft = false
 +++
-
-This page exists in a Hugo Section (e.g. pages, posts) called 'Hidden'. Access
-it from: <http://ianhocking.com/blog/hidden/style/>
 
 Let's read about how to write posts in Ox-Hugo--after the jump. (This will
 probably only work in the RSS.)
@@ -61,7 +58,15 @@ To export an org block:
 {{< figure src="/images/foo.png" >}}
 
 
-## Source Blocks {#source-blocks}
+## Source Code {#source-code}
+
+
+### Inline {#inline}
+
+`echo -e "test"` `-e test`
+
+
+### Blocks {#blocks}
 
 ```bash
 #!/usr/bin/sh

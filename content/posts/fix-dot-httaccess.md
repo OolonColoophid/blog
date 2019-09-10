@@ -1,7 +1,8 @@
 +++
 title = "Fix .httaccess!"
 author = ["Dr Ian Hocking"]
-draft = true
+lastmod = 2019-09-10T11:01:48+01:00
+draft = false
 +++
 
 So this hasn't quite worked yet! It looks as though it was working as I wanted

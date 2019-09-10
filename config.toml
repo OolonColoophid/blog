@@ -18,7 +18,6 @@ canonifyurls = false
 pygmentsStyle = "trac"
 pygmentsCodefences = true
 pygmentscodefencesguesssyntax = true
-pygmentsOptions = "linenos=table"
 
 [params]
     author = "Ian Hocking"

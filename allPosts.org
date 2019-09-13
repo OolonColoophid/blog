@@ -206,6 +206,13 @@ Now you know!
 :END:
 Hi, I'm Ian.
 
+This blog is mostly about code, but also Other Things.
+
+Are you looking for This Writing Life? It lives! But is seldom updated. I'll
+provide a link to it soon.
+
+Take care.
+
 * Posts
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: posts

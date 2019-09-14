@@ -194,7 +194,6 @@ Click here to find out more
 Now you know!
 #+end_details
 
-
 * Pages
     :PROPERTIES:
     :EXPORT_HUGO_SECTION: pages
@@ -212,6 +211,14 @@ Are you looking for This Writing Life? It lives! But is seldom updated. I'll
 provide a link to it soon.
 
 Take care.
+
+** Meta
+:PROPERTIES:
+:EXPORT_FILE_NAME: meta
+:EXPORT_DATE: 2019-09-14
+:END:
+
+[[http://ianhocking.com/wordpress/wp-admin/index.php][Login: This Writing Life]]
 
 * Posts
 :PROPERTIES:

@@ -92,7 +92,12 @@ pygmentscodefencesguesssyntax = true
     weight = 200
     url = "/pages/"
 [[menu.main]]
+    name = "Meta"
+    identifier = "meta"
+    weight = 300
+    url = "/pages/meta"
+[[menu.main]]
     name = "About"
     identifier = "about"
-    weight = 300
+    weight = 400
     url = "/pages/about"

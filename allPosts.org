@@ -207,8 +207,7 @@ Hi, I'm Ian.
 
 This blog is mostly about code, but also Other Things.
 
-Are you looking for This Writing Life? It lives! But is seldom updated. I'll
-provide a link to it soon.
+Are you looking for This Writing Life? [[http://ianhocking.com/2012/06/19/★-the-cabinet-of-curiosities/][It lives!]] But is seldom updated.
 
 Take care.
 

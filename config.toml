@@ -19,6 +19,8 @@ pygmentsStyle = "trac"
 pygmentsCodefences = true
 pygmentscodefencesguesssyntax = true
 
+disqusShortname = "ianhocking" # Enable or disable Disqus.
+
 [params]
     author = "Ian Hocking"
     info = "Code, Thoughts and Worlds"

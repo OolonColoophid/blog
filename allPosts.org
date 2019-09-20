@@ -600,32 +600,50 @@ to write on this blog'.
 :EXPORT_FILE_NAME: draft
 :END:
 
-** TODO Where Do People Go?
+** Some .httaccess Settings to Separate my Blogs
 :PROPERTIES:
 :EXPORT_FILE_NAME: where-do-people-go
 :END:
 
-Until recently, if a visitor went to ianhocking.com, they'd be redirected to my
-WordPress blog of several years called This Writing Life. I recently wanted to
-archive this, so that I could give prominence to my new programmer blog.
-However, I could never quite get the two blogs separate. WordPress kept
-intercepting 404 errors and taking people to my old blog, whereas I wanted my
-new blog's 404 page to appear.
+Until recently, if a visitor went to [[https://ianhocking.com]], they'd be redirected to my
+WordPress blog of several years called [[https://ianhocking.com/twl/][This Writing Life]]. I now want to
+move this to one side this so I can give prominence to my [[https://ianhocking.com][new programmer blog]].
+However, I'd been having trouble keeping the two blogs separate.
 
-I had a frustrating time with .htaccess files---success appeared intermittently,
-basically because I was having trouble fully understanding the rewrite rules
-used by WordPress. In a nutshell, WordPress alters the .htaccess file for the
+If a person went to https://ianhocking.com, they'd see my
+programmer blog. But if they requested a page that did not exist, they'd always
+get directed to my
+writing blog. Not only that, the writing blog's search was broken (as was any
+post preview within WordPress dashboard itself, caused by the preview sending an 'empty' URL to my
+domain, which would be redirected to my programming blog).
+
+#+CAPTION: Desired behaviour
+| URL                                                               | Type           | Behaviour                          |
+|-------------------------------------------------------------------+----------------+------------------------------------|
+| https://ianhocking.com                                            | exists         | Redirect to programmer blog        |
+| https://ianhocking.com/something                                  | does not exist | Redirect to programmer blog        |
+| https://ianhocking.com/2013/06/22/writing-a-novel-using-markdown/ | does exist     | Redirect to This Writing Life blog |
+
+I had a frustrating time with .htaccess files---the desired behaviour of sending
+this to either the programming blog or the writing blog depending on the URL
+succeeded intermittently, basically because I was having trouble fully
+understanding the rewrite rules that WordPress had applied to the
+~.htaccess~[fn:htaccess] file. In a nutshell, WordPress alters this file for the
 root folder (in my case, ianhocking.com) and then intercepts any URLs that don't
-exist as files on the server---because permalink URLs are often abritrary, and
+exist as files on the server. Because permalink URLs are often abritrary, and
 don't directly map onto the server's directory structure, this is a good way of
-dealing with permalinks. However, it also meant that my 'clever' solution wasn't
-going to work.
+dealing with permalinks.
+
+[fn:htaccess] A file used by the Apache web server to decide how pages are
+served in a given directory.
+
 
 Here is the relevant portion of my .htaccess file, with
-explanations of what each of these lines does over at
+explanations of what each of these lines does based on a handy-dandy page over at
 [[http://glennmessersmith.com/pages/wphtaccess.html][Glenn Messersmith's site]].
 
 #+BEGIN_SRC .htaccess
+
 # BEGIN WordPress
  <IfModule mod_rewrite.c>             # Is the server able to do URL rewrites?
                                       # Begin block
@@ -640,8 +658,53 @@ explanations of what each of these lines does over at
                                       # the original request URL)
  </IfModule>                          # End block
 # END WordPress
+
 #+END_SRC
 
-The take-home message is that the
+Elsewhere in the .htaccess file, I set the ~DirectoryIndex~ (i.e. the place
+you're taken if only the directory is requested) to my new blog's 404 page:
 
-The new base URL for This Writing Life is [[https://ianhocking.com/twl]]
+#+BEGIN_SRC .httaccess
+DirectoryIndex /prog/index.htm /prog/index.html prog/index.php
+ErrorDocument 404 /prog/404.html
+#+END_SRC
+
+*** The Fix
+
+My solution was to move the blog to a subdirectory, /twl/, so it's now accessed at
+https://ianhocking.com/twl/. I updated the permalinks settings within WordPress
+itself (Settings > General Settings > Site Address (URL):
+https://ianhocking.com/twl), so that WordPress is aware that /twl/ should be
+part of the permalink address.
+
+This meant I could the tweak the .htaccess file (in both the site root and the
+WordPress directory) with the effect that WordPress would only intercept
+non-existent files or directories if they were prefixed by ~twl~. This allows me
+to separate the blogs more senisbly.
+
+#+BEGIN_SRC .httaccess
+RewriteRule ^twl.* /index.php [L]
+#+END_SRC
+
+One last thing. I had worried that this would break all the incoming links to my writing
+blog. However, it happens to be the case that these posts are date-based, and
+thus always begin with a number. Another ~RewriteRule~ to detect these and throw to the
+WordPress index.php page would fix it. So here is my final .htaccess file
+(again, one version for the root of the domain and another for the WordPress
+directory itself).
+
+#+BEGIN_SRC .httaccess
+
+# BEGIN WordPress
+ <IfModule mod_rewrite.c>
+ RewriteEngine On
+ RewriteBase /
+ RewriteRule ^index\.php$ - [L]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^twl.* /index.php
+ RewriteRule ^[0-9].* /index.php [L]
+ </IfModule>
+# END WordPress
+
+#+END_SRC

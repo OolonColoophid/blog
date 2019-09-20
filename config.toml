@@ -1,4 +1,4 @@
-baseURL = "//ianhocking.com/blog"
+baseURL = "//ianhocking.com/prog"
 languageCode = "en"
 title = "Dr Ian Hocking"
 theme = "hugo-coder"

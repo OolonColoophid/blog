@@ -19,4 +19,4 @@ rm -r "$blogDir/public" || echo "No /public directory in blog directory $blogDir
 cd $blogDir && hugo || echo "Cannot cd to blog directory $blogDir"
 
 # Upload
-rsync -r --verbose --compress --human-readable --progress --recursive public/. ianhocki@ianhocking.com:public_html/blog/
+rsync -r --verbose --compress --human-readable --progress --recursive public/. ianhocki@ianhocking.com:public_html/prog/

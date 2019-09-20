@@ -83,7 +83,7 @@ This section won't appear explicitly on my website, but I'd like it to be
 here so I can check out how my 'style guide' looks on the web.
 
 This page exists in a Hugo Section (e.g. pages, posts) called 'Hidden'.
-Access it from: [[https://ianhocking.com/blog/hidden/style/]]
+Access it from: [[https://ianhocking.com/prog/hidden/style/]]
 
 ** Style Guide
 :PROPERTIES:
@@ -599,3 +599,49 @@ to write on this blog'.
 :PROPERTIES:
 :EXPORT_FILE_NAME: draft
 :END:
+
+** TODO Where Do People Go?
+:PROPERTIES:
+:EXPORT_FILE_NAME: where-do-people-go
+:END:
+
+Until recently, if a visitor went to ianhocking.com, they'd be redirected to my
+WordPress blog of several years called This Writing Life. I recently wanted to
+archive this, so that I could give prominence to my new programmer blog.
+However, I could never quite get the two blogs separate. WordPress kept
+intercepting 404 errors and taking people to my old blog, whereas I wanted my
+new blog's 404 page to appear.
+
+I had a frustrating time with .htaccess files---success appeared intermittently,
+basically because I was having trouble fully understanding the rewrite rules
+used by WordPress. In a nutshell, WordPress alters the .htaccess file for the
+root folder (in my case, ianhocking.com) and then intercepts any URLs that don't
+exist as files on the server---because permalink URLs are often abritrary, and
+don't directly map onto the server's directory structure, this is a good way of
+dealing with permalinks. However, it also meant that my 'clever' solution wasn't
+going to work.
+
+Here is the relevant portion of my .htaccess file, with
+explanations of what each of these lines does over at
+[[http://glennmessersmith.com/pages/wphtaccess.html][Glenn Messersmith's site]].
+
+#+BEGIN_SRC .htaccess
+# BEGIN WordPress
+ <IfModule mod_rewrite.c>             # Is the server able to do URL rewrites?
+                                      # Begin block
+ RewriteEngine On                     # Start rewriting URLs
+ RewriteBase /                        # Base URL relative to the WordPress files
+ RewriteRule ^index\.php$ - [L]       # If requested file is index.php,
+                                      # take user there and stop processing rules
+ RewriteCond %{REQUEST_FILENAME} !-f  # Does the requested file not exist?
+ RewriteCond %{REQUEST_FILENAME} !-d  # Or does the directory not exist?
+ RewriteRule . /index.php [L]         # Otherwise replace request with index.php
+                                      # and go there (WordPress will still know
+                                      # the original request URL)
+ </IfModule>                          # End block
+# END WordPress
+#+END_SRC
+
+The take-home message is that the
+
+The new base URL for This Writing Life is [[https://ianhocking.com/twl]]

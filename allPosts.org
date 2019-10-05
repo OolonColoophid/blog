@@ -584,21 +584,196 @@ a dotfile in the blog directory (~.dirs-locals.el~).
 :EXPORT_DATE: 2019-09-01
 :END:
 
-** TODO Fix .httaccess error again
+** Java Puzzles: Oddity                                               :Java:
 :PROPERTIES:
-:EXPORT_FILE_NAME: fix-dot-httaccess
+:EXPORT_FILE_NAME: javaPuzzles1
+:EXPORT_DATE: 2019-10-05
 :END:
 
-So this hasn't quite worked yet! It looks as though it was working as I wanted
-it, but then I needed to include the WordPress settings back and that seems have
-created a problem. Maybe move my new rule to the end of the file.
+I'm not that far into my Java journey, but I've come across this interesting
+Java puzzle, set by one of my MSc instructors. I'm setting it down here to help
+me remember it. The puzzle isn't unique to our course, and I've seen it
+discussed elsewhere (not that I searched until I'd given it a thorough
+working over privately, first!).
 
-Also, fix the image, which is no longer appearing on the web version of my 'how
-to write on this blog'.
-** TODO New draft
-:PROPERTIES:
-:EXPORT_FILE_NAME: draft
-:END:
+Essentially, we are asked: "Is the method below to determine whether a number is
+odd correct?"
+
+#+NAME: isOdd
+#+BEGIN_SRC java :classname "MyClass" :results output
+
+public class MyClass {
+
+    public static boolean isOdd(int i) {
+        return i % 2 == 1;
+    }
+
+    public static void main(String[] args){
+
+        System.out.println("1 is " + isOdd(1));
+        System.out.println("2 is " + isOdd(2));    }
+}
+
+#+END_SRC
+
+~isOdd~ is a predicate function, in that it should return ~true~ for odd numbers
+and ~false~ for even numbers. The version you see above, [[isOdd][isOdd]], has some extra
+wrapper Java around it--to make it work with Org Babel--, including the two print statements in the ~main~ method,
+but is otherwise identical to the one set by our instructor.
+
+Intuitively, it looks correct. It applies the function ~modulus 2~ (i.e. the
+remainder when the parameter is divided by two). This should return ~0~ for even
+numbers - what we want - and ~1~ for odd numbers - also what we want.
+
+You can see my testing in the table below.
+
+#+CAPTION: Testing isOdd
+| Input | Modulus Result (% 2) | Function Should Output | Function Outputs |
+|-------+----------------------+------------------------+------------------|
+|     5 |                    1 | True                   | True             |
+|     4 |                    0 | False                  | False            |
+|    11 |                    1 | True                   | True             |
+|   100 |                    0 | False                  | False            |
+|    -5 |                    1 | True                   | False            |
+|     0 |                    0 | False                  | False            |
+
+Aha - it fails with negative numbers.
+
+This made me double check how a modulus works with negative numbers. It turns out that, in
+mathematics, the modulus of a negative is normally positive (i.e. without a
+sign). However, some programming languages - including Java - keep
+the sign. I can see this is helpful in retaining a something about the
+calculation. Essentially, it allows us to recover that the one of the terms in
+the modulus was negative.
+
+And this negative number case is indeed the failure point for the method. To make ~isOdd~ work for
+negatives, our conditional should test for a non-zero remainder such as ~-1~ in
+the case of modulus ~5~. The corrected
+source is below, along with my test numbers from the table above.
+
+#+BEGIN_SRC java :classname "MyClass" :results output :exports both
+
+public class MyClass {
+
+    public static boolean isOdd(int i) {
+        return i % 2 != 0;
+    }
+
+    public static void main(String[] args){
+
+        System.out.println("Is 5 odd? " + isOdd(5));
+        System.out.println("Is 4 odd? " + isOdd(4));
+        System.out.println("Is 11 odd? " + isOdd(11));
+        System.out.println("Is 100 odd? " + isOdd(100));
+        System.out.println("Is -5 odd? " + isOdd(-5));
+        System.out.println("Is 0 odd? " + isOdd(0));
+    }
+}
+
+#+END_SRC
+
+** TODO Java Puzzles: When is a plus not a plus?                      :Java:
+
+"Provide type declarations so that this is legal:
+
+1. x += i;
+
+And this is not:
+
+2. x = x + i;
+
+Explain why this is so."
+
+This sounds like there is a difference bewteen + and +=, which is not obvious.
+(Both statements should add x to i.)
+
+OK, Stack Overflow tells me that these are *not* equivalent.
+
+| Operation | Type of x | Type of i | Compilation |
+|-----------+-----------+-----------+-------------|
+| x = x + i | int       | long      | FAIL        |
+| x = x + i | int       | int       | Yes         |
+|-----------+-----------+-----------+-------------|
+| x += i    | int       | double    | Yes         |
+| x += i    | int       | int       | Yes         |
+| x += i    | double    | int       | Yes         |
+
+Note that any assignment of a variable to a decimal is a double (it's more
+accurate than float, and Java prefers it because it is less lossy). Override by
+putting an f at the end of the number, e.g. 3.2f.
+
+#+BEGIN_QUOTE
+A compound assignment expression of the form E1 op= E2 is equivalent to E1 = (T)
+((E1) op (E2)), where T is the type of E1, except that E1 is evaluated only
+once.
+
+This code block is correct:
+
+short x = 3;
+x += 4.6;
+
+It results in 7 because the first expanded operand take the type short, and this
+is applied to the second operand. It's the equivalent of this:
+
+short x = 3;
+x = (short)(x + 4.6);
+
+-- https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2
+#+END_QUOTE
+
+
+#+BEGIN_SRC java :classname MyClass :results output
+public class MyClass{
+    public static void main(String[] args) {
+        double i = 1.7;
+        int x = 2;
+
+        System.out.println(x += i);
+        System.out.println(x = x + i); // Uncomment and code will fail
+    }
+}
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+So the short answer is that ~x += i~ can have incompatible types. So defining
+~x~ as ~int~ and ~i~ as ~double~ means that ~i~ will be cast an as ~int~ and the
+operation can proceed.
+
+No casting happens with ~x = x + i;~ - there are incompatible types.
+
+No solution suggested yet in Friday's lecture! Maybe after the weekend.
+** TODO Java Puzzles: Letters and Numbers                             :Java:
+
+"What does this print?"
+
+#+BEGIN_SRC java :classname MyClass :results output
+public class MyClass{
+    public static void main(String[] args) {
+        String letters = "ABC";
+        char[] numbers = {'1','2','3'};
+        System.out.println(letters + " as easy as " + numbers);
+    }
+}
+#+END_SRC
+
+"Why?"
+
+"Fix it."
+
+#+RESULTS:
+: ABC as easy as [C@7a81197d
+
+According to [[https://stackoverflow.com/questions/409784/whats-the-simplest-way-to-print-a-java-array][What's the simplest way to print a Java array? - Stack Overflow]],
+when you try to print an array you get the className + '@' + the hex of the
+hashCode of the array, as defined by Object.toString(). Printing a string
+directly seems to override this method and give the user 'what they mean'.
+
+The solution is to use the method ~toString(arr)~ in the class ~Arrays~ - but I
+don't seem to have access to that class. Do I need to load a library? Perhaps
+~import java.util.Arrays;~ will work.
+
 
 ** Some .httaccess Settings to Separate my Blogs
 :PROPERTIES:

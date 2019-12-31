@@ -5,7 +5,7 @@
 
 We'll go with ox-hugo and use the instructions suggested by this kind individual: [[http://petercheng.net/posts/website-v2-setup/][Publishing a Website from Emacs and Hugo · Peter Cheng]]
 
-I've created a new directory for my files here [[file+emacs:~/Dropbox/org/blog/programmer]]
+I've created a new directory for my files here [[file+emacs:~/Sync/org/blog/programmer]]
 
 ~Hugo~ is installed.
 
@@ -15,7 +15,7 @@ I like the look of the ~hugo-coder~ theme, and I've added it to ~themes~. The
 full set of parameters (for ~config.toml~) are in [[https://github.com/luizdepra/hugo-coder/wiki/Configurations#complete-example][Configurations · luizdepra/hugo-coder Wiki · GitHub]].
 
 #+BEGIN_SRC shell
-cd ~/Dropbox/org/blog
+cd ~/Sync/org/blog
 hugo new site programmer
 cd programmer && git clone https://github.com/luizdepra/hugo-coder.git themes/hugo-coder
 #+END_SRC
@@ -23,7 +23,7 @@ cd programmer && git clone https://github.com/luizdepra/hugo-coder.git themes/hu
 Let's look at the .toml file, which contains important settings.
 
 #+BEGIN_SRC shell :results output
-cat ~/Dropbox/org/blog/programmer/config.toml
+cat ~/Sync/org/blog/programmer/config.toml
 #+END_SRC
 
 #+RESULTS:
@@ -68,11 +68,11 @@ hugo server -D --navigateToChanged
 #+END_SRC
 
 * Todos
-** TODO Add URL to my old blog in About
+** DONE Add URL to my old blog in About
 ** DONE 404 is currently my Wordpress 404
 - Is my symbolic link to the new 404 working yet?
-** TODO Update About
-** TODO Write a Post
+** DONE Update About
+** DONE Write a Post
 
 * Hidden
 :PROPERTIES:
@@ -446,7 +446,7 @@ set -eu
 username="username"
 server="servername"
 
-blogDir="/Users/ianuser/Dropbox/org/blog/programmer"
+blogDir="/Users/ianuser/Sync/org/blog/programmer"
 
 # Remove previous build of site
 rm -r "$blogDir/public" || echo "No /public directory in blog directory $blogDir to delete"
@@ -479,7 +479,7 @@ Essentially, with the directory holding your tracked files, you'll see
 Let's take a look at them.
 
 #+BEGIN_SRC bash :exports output :results output
-ls -g ~/Dropbox/org/blog/programmer/.git/hooks
+ls -g ~/Sync/org/blog/programmer/.git/hooks
 #+END_SRC
 
 Gives us:
@@ -514,8 +514,8 @@ to make sure that the hooks execute (which are simple Bash scripts after all), w
 make sure that execution privileges have been assigned:
 
 #+BEGIN_SRC bash
-chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/post-commit
-chmod +x ls ~/Dropbox/org/blog/programmer/.git/hooks/pre-push
+chmod +x ls ~/Sync/org/blog/programmer/.git/hooks/post-commit
+chmod +x ls ~/Sync/org/blog/programmer/.git/hooks/pre-push
 #+END_SRC
 
 *** My New Workflow
@@ -538,7 +538,7 @@ difficult error to troubleshoot. For this reason, my ~.gitignore~ excludes:
 { echo '-- ' &&
 	date &&
 	echo 'Git hook .git/hooks/post-commit executed by git-commit' &&
-	echo 'Hook will push master branch to remote origin' ; } >> /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+	echo 'Hook will push master branch to remote origin' ; } >> /Users/ianuser/Sync/org/blog/programmer/logs/hooks.log
 
 git push origin master
 
@@ -552,9 +552,9 @@ git push origin master
 { echo '-- ' &&
 	date &&
 	echo 'Git hook .git/hooks/pre-push executed by git-push' &&
-	echo 'Hook will call deploy.sh' ; } >> /Users/ianuser/Dropbox/org/blog/programmer/logs/hooks.log
+	echo 'Hook will call deploy.sh' ; } >> /Users/ianuser/Sync/org/blog/programmer/logs/hooks.log
 
-/Users/ianuser/Dropbox/org/blog/programmer/deploy.sh
+/Users/ianuser/Sync/org/blog/programmer/deploy.sh
 #+END_SRC
 
 Finally, I'm now able
@@ -577,6 +577,13 @@ a dotfile in the blog directory (~.dirs-locals.el~).
 :EXPORT_FILE_NAME: httpHttpsHugo
 :EXPORT_DATE: 2019-09-10
 :END:
+** Merge Sort                                                           :https:
+:PROPERTIES:
+:EXPORT_FILE_NAME: mergeSort
+:EXPORT_DATE: 2019-12-31
+:END:
+
+Hello - just testing!
 
 ** TODO The Crack of Doom                                            :setup:
 :PROPERTIES:

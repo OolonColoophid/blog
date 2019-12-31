@@ -583,20 +583,22 @@ a dotfile in the blog directory (~.dirs-locals.el~).
 :EXPORT_DATE: 2019-12-31
 :END:
 
-One of the trickiest concepts on my [[https://www.cs.kent.ac.uk/masters/courses/msc-compsci/][MSc in Computer Science]] is recursion, which
+One of the trickiest concepts of my [[https://www.cs.kent.ac.uk/masters/courses/msc-compsci/][MSc in Computer Science]] is recursion, which
 is defined as the act of [[https://en.wikipedia.org/wiki/Recursion]['calling oneself']]. In the context of computer functions, calling
 oneself is useful because it means doing whatever the function just did, but
-again, on the output of what it just did. Tricky to get your head around; even writing sentence that was difficult!
+again, on something it has produced. Tricky to get your head around; even
+writing that last sentence was difficult!
 
 As part of the learning process, I've been trying to clarify why I find
 recursion hard. The answer seems to be that I want to follow the journey of
 the recursion in a linear fashion; in other words, what is the program's state after the first
 self call? What is it after the second? This soon becomes overwhelming
-because there are too many elements in play. Whenever this has to me in the
-past, the solution has been the same: find a better representation system. If
-Roman numerals are making maths tricky, that's time to switch to Arabic.
+because there are too many elements in play. Whenever such confusion has
+happened to me in the
+past, the solution has lain in a better representation system. In other words, when
+Roman numerals are making maths tricky, time to switch to Arabic.
 
-There are helpful ways of thinking about recursion out there. Among many, I found [[https://medium.com/@daniel.oliver.king/getting-started-with-recursion-f89f57c5b60e][this article]], which
+There are many helpful ways of thinking about recursion out there. For instance, I found [[https://medium.com/@daniel.oliver.king/getting-started-with-recursion-f89f57c5b60e][this article]], which
 contains the following insight:
 
 #+begin_quote
@@ -606,13 +608,13 @@ When talking about writing recursive functions, most people focus on the fact th
 #+end_quote
 
 This is great advice. It goes beyond thinking about recursion linearly, which
-I've been trying to do, and thinking more about the algorithmic
+I've been trying to do, to thinking more about the algorithmic
 perspective---what is this function actually trying to do? Well, it is trying to split
-the problem into smaller pieces (recursion), and when the pieces can't be made
-any smaller, the recursions reverse their sequence.
+the problem into smaller pieces (recursive case), and when the pieces can't be made
+any smaller (base case), the recursions reverse their sequence.
 
 I wanted, however, to write a recursive program that tells me a bit about its
-recursive journey, and for that I implemented ~merge sort~ algorithm[fn:vneuman]. This was a
+recursive journey, and for that I implemented the ~merge sort~ algorithm[fn:vneuman]. This was a
 'three birds with one stone' situation. It not only helped my thinking about
 recursion, but also about the algorithm itself, as well as giving me more
 experience with Java.
@@ -621,12 +623,12 @@ I've put the full code (it's not long) on [[https://github.com/OolonColoophid/me
 below. This uses the list of numbers from the [[https://en.wikipedia.org/wiki/Merge_sort][Wikipedia article on merge sort]]:
 38, 27, 43, 3, 9, 82, 10 (shown in [[https://en.wikipedia.org/wiki/Merge_sort#/media/File:Merge_sort_algorithm_diagram.svg][this diagram]]).
 
-The algorithm itself splits the list into sub lists until the lists are only of
-one element each (the base condition). Then, it merges the sublists into sorted
+The algorithm itself splits (function ~mergeSort~) the list into sublists until the lists are only of
+one element each. Then, it merges (function ~merge~) the sublists into sorted
 units of successively longer lengths until the original length is reached---and
 thus we have 3, 9, 10, 27, 38, 43, 82.
 
-Here's the output of the program:
+Here's the output of the program (put the Wikipedia diagram alongside while you read):
 
 #+begin_example
 - FUNC mergeSort starting

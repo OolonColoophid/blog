@@ -7,16 +7,37 @@
 # u - treat unset variables as an error
 set -eu
 
-username="ianhocki"
-server="ianhocking.com"
+dir="/Users/ianuser/Sync/org/blog/programmer/"
+logFile="logs/hooks.log"
 
-blogDir="/Users/ianuser/Dropbox/org/blog/programmer"
+echo "---deploy.sh now takes over---" >> "$dir$logFile"
+
+# Go
+if cd "$dir" ; then
+	echo "cd: success" >> "$logFile"
+else
+	echo "cd: failed" >> "$dir$logFile"
+	exit
+fi
 
 # Remove previous build of site
-rm -r "$blogDir/public" || echo "No /public directory in blog directory $blogDir to delete"
+if rm -r "public" ; then
+	echo "rm: /public directory deleted successfully" >> "$logFile"
+else
+	echo "rm: failed" >> "$logFile"
+	exit
+fi
 
 # Build
-cd $blogDir && hugo || echo "Cannot cd to blog directory $blogDir"
+if hugo ; then
+	echo "Hugo: success" >> "$logFile"
+else
+	echo "Hugo: failed" >> "$logFile"
+fi
 
 # Upload
-rsync -r --verbose --compress --human-readable --progress --recursive public/. ianhocki@ianhocking.com:public_html/prog/
+if rsync -r --compress --progress --recursive public/. ianhocki@ianhocking.com:public_html/prog/ ; then
+	echo "rsync: success" >> "$logFile"
+else
+	echo "rsync: failed" >> "$logFile"
+fi

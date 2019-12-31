@@ -12,3 +12,6 @@ public      # No need to see these files - they're on the web, after all, at ian
 archetypes  # Not needed
 static      # Not needed
 logs
+
+MyClass.class
+MyClass.java

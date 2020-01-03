@@ -1,5 +1,7 @@
 #+HUGO_BASE_DIR: ./
-#+TITLE: Ian Hocking
+
+1. Save to export as markdown
+2. Commit to publish
 
 * Setup
 
@@ -195,9 +197,9 @@ Now you know!
 #+end_details
 
 * Pages
-    :PROPERTIES:
-    :EXPORT_HUGO_SECTION: pages
-    :END:
+  :PROPERTIES:
+  :EXPORT_HUGO_SECTION: pages
+  :END:
 ** About
 :PROPERTIES:
 :EXPORT_FILE_NAME: about
@@ -205,11 +207,27 @@ Now you know!
 :END:
 Hi, I'm Ian.
 
-This blog is mostly about code, but also Other Things.
+I live in Canterbury with my wife and several gerbils.
 
-Are you looking for This Writing Life? [[http://ianhocking.com/2012/06/19/★-the-cabinet-of-curiosities/][It lives!]] But is seldom updated.
+Following a successful career in academic psychology researching psycholinguistics
+and creativity[fn:psychol], I'm now looking for opportunities
+and challenges in my first love, software development. I enrolled on the University
+of Kent's [[https://www.kent.ac.uk/courses/postgraduate/243/computer-science][MSc in Computer Science]] in September 2019 and aim to graduate in
+September[fn:modules].
 
-Take care.
+Are you on the lookout for a CS graduate who comes with fully developed
+research skills, several years' successful leadership experience, and is
+passionate about coding? Check out my [[https://www.dropbox.com/s/tkzth8mv5ihwhu6/cv.pdf?dl=1][CV]]/[[https://www.dropbox.com/s/pa7ymvusgifhvt2/Resources%20and%20Parsing%20thesis%20Hocking.pdf?dl=1][PhD]] and, if you like, have your people talk to [[mailto:ihocking@gmail.com][my people]].
+
+Are you looking for my old blog This Writing Life? [[http://ianhocking.com/2012/06/19/★-the-cabinet-of-curiosities/][It lives!]] But is seldom updated.
+
+Take care!
+
+[fn:modules] Covering computer architecture, Java and OOP, web and information
+systems (PHP, Javascript, SQL), logic programming, software engineering, and
+machine learning.
+
+[fn:psychol] [[https://scholar.google.co.uk/citations?user=901ZnqMAAAAJ&hl=en][Google Scholar profile]]
 
 ** Meta
 :PROPERTIES:
@@ -577,7 +595,7 @@ a dotfile in the blog directory (~.dirs-locals.el~).
 :EXPORT_FILE_NAME: httpHttpsHugo
 :EXPORT_DATE: 2019-09-10
 :END:
-** Merge Sort and Recursion                                              :Java:
+** Merge Sort and Recursion                                             :Java:
 :PROPERTIES:
 :EXPORT_FILE_NAME: mergeSort
 :EXPORT_DATE: 2019-12-31

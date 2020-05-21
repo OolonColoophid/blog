@@ -1,5 +1,6 @@
 #+HUGO_BASE_DIR: ./
 
+- How to publish
 1. Save to export as markdown
 2. Commit to publish
 
@@ -754,6 +755,56 @@ magnitude, since the time taken to sort has more to do with the number of
 recursion levels than the linear elements in the list (at least, that's my impression). It was partly created by [[https://en.wikipedia.org/wiki/John_von_Neumann][John von Neumann]], and I read much about him
 and the digital revolution in a book called [[https://www.amazon.co.uk/Turings-Cathedral-Origins-Digital-Universe/dp/014101590X][Turing's Cathedral]].
 
+
+** Solving Sudoku Puzzles with Prolog
+:PROPERTIES:
+:EXPORT_FILE_NAME: prologCLP
+:EXPORT_DATE: 2020-05-21
+:END:
+
+[[https://en.wikipedia.org/wiki/Prolog][Prolog]] has been a mind-expanding discovery. It is, at once, the most frustrating
+computer language I've ever used, and the most elegant and expressive. It
+works by taking a question about a notional world and trying to make it true. Any
+variables that are needed to achieve this truth can then feed into other
+questions. Sound weird? It is!
+
+Because Prolog is non-imperative, it can make those of us used to imperative
+programming bang our heads on the desk a few times; but it turns out there are
+advantages to describing your problem well and letting the computer figure out
+the program to solve it. As long as the description works, the program should work, and one
+thing's for sure: the description is a lot shorter and clearer.
+
+Towards the end of my logic programming module at the University of Kent, we
+were introduced to constraint-based programming. In a nutshell, this works by
+describing a domain (e.g. a map of the world's countries), variables
+(e.g. the countries), and values those variables can take (e.g. colours). We can
+then give a constraint: 'I would like each country on the map to have a colour,
+but neighbouring countries must not have the same colour'. Prolog--with some
+help from a finite domain constraint programming library, [[https://www.swi-prolog.org/man/clpfd.html][CLP(FD)]]--will then pootle off
+and provide you with all of the ways in which this constraint can be fulfilled.
+In this case, it would be the number of maps that exist where neighbouring
+countries have different colours, together with the colours themselves.
+
+Now, I love a good [[https://en.wikipedia.org/wiki/Sudoku][Sudoku]]. As Wikipedia
+tell us, the objective of Sudoku is:
+
+#+BEGIN_QUOTE
+...is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called "boxes", "blocks", or "regions") contain all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
+#+END_QUOTE
+
+A perfect way to exercise my Prolog skills to implement the constraints! It took
+me a couple of hours and works successfully--in an imperative language like Python, this would have been a lot longer,
+and probably involving a few bugs. Plus, it works
+with
+the [[https://www.conceptispuzzles.com/index.aspx?uri=info/article/424][world's
+hardest sudoku]]!
+
+The code is over at [[https://github.com/OolonColoophid/prolog\_sudoku/blob/master/readme.org][Github]].
+
+Finally, in my Prolog journey, I came across some great learning resources
+beyond those offered by Stefan and Andy at UKC. [[https://learnxinyminutes.com/docs/prolog/][Learn prolog in Y
+Minutes]] takes a fairly 'quick and dirty' approach, but will get you to speed.
+[[http://lpn.swi-prolog.org/lpnpage.php?pagetype=html&pageid=lpn-htmlli4][Learn Prolog Now!]] is more in depth.
 
 ** TODO The Crack of Doom                                            :setup:
 :PROPERTIES:

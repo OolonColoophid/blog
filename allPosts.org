@@ -240,9 +240,28 @@ machine learning.
 
 ** Baker Street
 :PROPERTIES:
+:EXPORT_FILE_NAME: bakerStreet
+:EXPORT_DATE: 2020-08-19
 :END:
 
-Baker Street is a natural deduction proof tool.
+Baker Street is a natural deduction tool for macOS written in Swift. It is open
+source and you can [[https://github.com/OolonColoophid/bakerStreet][view the code on Github]].
+
+*** Privacy Policy
+
+This policy applies to all information collected by Baker Street.
+
+**** Information we collect
+
+No information is collected.
+
+**** Your Consent
+
+By using this app, you consent to our privacy policy.
+
+**** Contact
+
+If you have questions regarding this privacy policy, you may email [[mailto:ihocking@gmail.com][ihocking@gmail.com]].
 
 * Posts
 :PROPERTIES:

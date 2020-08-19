@@ -238,6 +238,12 @@ machine learning.
 
 [[http://ianhocking.com/wordpress/wp-admin/index.php][Login: This Writing Life]]
 
+** Baker Street
+:PROPERTIES:
+:END:
+
+Baker Street is a natural deduction proof tool.
+
 * Posts
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: posts
@@ -799,7 +805,7 @@ with
 the [[https://www.conceptispuzzles.com/index.aspx?uri=info/article/424][world's
 hardest sudoku]]!
 
-The code is over at [[https://github.com/OolonColoophid/prolog\_sudoku/blob/master/readme.org][Github]].
+The code is over at [[https://github.com/OolonColoophid][my Github page]].
 
 Finally, in my Prolog journey, I came across some great learning resources
 beyond those offered by Stefan and Andy at UKC. [[https://learnxinyminutes.com/docs/prolog/][Learn prolog in Y

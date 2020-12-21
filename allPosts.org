@@ -273,7 +273,7 @@ Baker Street was developed by Ian Hocking under the supervision of Dr Olaf Chiti
 
 - Export or copy your preview to LaTeX, Markdown or HTML
 
-- Zoom support for all windows /Users/ianuser/Library/Mobile Documents/comappleCloudDocs/Documents/Kent/archive/project/submission/dissertationHocking.pdf
+- Zoom support for all windows
 
 - Dark mode support
 

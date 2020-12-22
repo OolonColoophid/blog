@@ -247,6 +247,10 @@ machine learning.
 Baker Street is a natural deduction tool for macOS written in Swift. It is open
 source and you can [[https://github.com/OolonColoophid/bakerStreet][view the code on Github]].
 
+*** Manual
+
+[[https://ianhocking.com/manuals/BakerStreet_v1.0_manual.pdf][Download]].
+
 *** Overview
 
 Available for macOS (10.12 -), Baker Street is a free-form tool that helps you produce natural deduction proofs in propositional logic. Use Baker Street to enter your proof, check for errors, clarify relationships between proof lines, preview, and export your proof in several formats.

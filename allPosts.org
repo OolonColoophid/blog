@@ -214,9 +214,9 @@ Following a successful career in academic psychology researching psycholinguisti
 and creativity[fn:psychol], I'm now looking for opportunities
 and challenges in my first love, software development. I enrolled on the University
 of Kent's [[https://www.kent.ac.uk/courses/postgraduate/243/computer-science][MSc in Computer Science]] in September 2019 and aim to graduate in
-September[fn:modules].
+September 2021[fn:modules]. I'm currently working as a macOS/iOS intern at [[https://www.literatureandlatte.com][Literature and Latte]].
 
-Are you on the lookout for a CS graduate who comes with fully developed
+Are you on the lookout for a coder who comes with fully developed
 research skills, several years' successful leadership experience, and is
 passionate about coding? Check out my [[https://www.dropbox.com/s/tkzth8mv5ihwhu6/cv.pdf?dl=1][CV]]/[[https://www.dropbox.com/s/pa7ymvusgifhvt2/Resources%20and%20Parsing%20thesis%20Hocking.pdf?dl=1][PhD]] and, if you like, have your people talk to [[mailto:ihocking@gmail.com][my people]].
 
@@ -1178,3 +1178,48 @@ directory itself).
 # END WordPress
 
 #+END_SRC
+
+** Small Packages
+
+Britta went to bed a few minutes before me, calling down, 'Good night!' Just before I called back, I thought I heard someone else say, 'Good night'. I shouted, 'What did you say?' Britta replied, 'Nothing - did you say something?' Naturally, I went to bed half an hour later thinking that there was a person in our house, friendly enough, wishing us both a good night. It had been six days since Sheldon died.
+
+I have a wireless router on the other side of the bedroom. It's top light sometimes keeps me awake at night, so I've covered it with the most opaque thing I have to hand that can balance on top: a special coin with a skull on it that reads 'Memento mori'. Despite this, the router still puts out a diffuse glow, and that glow went from blue to purple at some point in the last night. In my half-awake state, I thought of myself on a dark sea, on a raft, and this was light in the window of a cliff house somewhere miles to leeward, somewhere I might call home. I still had a dream-like notion that there was someone in the house. I got out of bed - my dream bed, that is, since I was still fast asleep - and opened the door.
+
+Although the hallway has an automatic light, it hadn't turned on. I could see two cats' eyes looking at me from the darkness, just as they'd looked at me from the darkness of the curtained shelving in the spare room. It was Sheldon. He recognised me, but wasn't relaxed; he retained the nervousness that he always had when bumping into either me or Britta on the stairs. His pupils were dilated were dilated, taking me in, a combination of surprise and acceptance.
+
+Was I pleased to see him? Are we ever pleased to see the dead? Sometimes, in dreams, I will hug a long-passed relative - someone I barely touched while alive - and ask them where they've been and what they've seen. I'll tell them I'm married now, and that they've missed other births and deaths. But there is always a faint guilt. I am alive and they are not. Will they resent me? But them seem wiser that before, and I often put this wisdom down to the experience of death itself.
+
+Relaxing his wise eyes, Sheldon turned in that way he had of turning when followed by me carrying food. We went up the stairs, as we had many times before, to the attic rooms that had been his world with us. But the scene up there was more like the belfry of an village church. My first thought was, Blimey, Britta's been storing stuff up here. There were opened plastic boxes filled with old calendars, shoes, rope; power tools with German plugs; and everything in a kind of dim, dusty fug. And it was full of cats. At least five or six, all of different kinds. They rubbed themselves against my leg and looked hopefully back and forth between their empty food bowls and me.
+
+Of Sheldon there was no sign. I didn't call out to him. I knew he'd gone. He'd led me here, and it was only when I woke that I realised he was telling me that there were other cats to take care of.
+
+
+
+
+After breakfast he would wander into the centre of my office and lie on his side, staring into space like a poet. It was not to touch him. If I did, he would labour to his feet and move to spot out of arm's reach, and begin lying again.
+
+I would often turn to look at him for seconds at a time, thinking to myself: Ian, this is odd behaviour. You're staring. But cats are themselves a collection of odd behaviours, so I figured I would keep doing it, and Sheldon didn't mind. Just looking at him made me happy.
+
+When we recycle things, or throw things away, we like to say 'Thanks'. I tried to say thanks to Sheldon but it wasn't in my power to do so. I settled for putting my fingers into his cage. He still briefly at my touch, but only briefly.
+
+He meowed only once or twice - when surprised by Britta. Otherwise, he preferred silence. A knock at the door would trigger a kind of muffled wail that would warble as he jogged back to the darkness behind the shelves of the spare room. We wondered what associations he had.
+
+He went to the vet twice. On the first occasion, he went limp like a trained protester as I picked him up then sprang into a surprisingly effective starfish shape as I lowered him into his cage. When he came back that night, I expected him to bear a grudge, or at least be grumpy, but he seemed delighted to see us and tolerated plenty of physical contact. On the second occasion, when he had half an hour to live, he went in easily, trustfully.
+
+He didn't poo for three days. When he did, were texting our friends in triumph like he was a furry child winning an egg-and-spoon race.
+
+It took a week before his tail, tapping the ground impatiently like an old man waiting for a bus, stilled, and then slowly rose to the vertical as he walked and settled in.
+
+He purred when observed, clicking like a Geiger counter, the radioactivity increasing with our proximity, or our gaze, or just the faraway sound Britta closing a kitchen drawer.
+
+His breathing was hard. He had to concentrate to breath, the way a bagpiper concentrates on squeezing his instrument.
+
+I put everything in the front end and took care of everything that came out of the back end.
+
+It was three days before I Googled 'Why is my neutered cat trying to have sex with my arm?'
+
+When it rained he would look at the window and frown, if cats frown.
+
+When it was sunny, he lay in the sunlight and his fur yellowed and aged, and he was too hot to sleep, but didn't move.
+
+We took pictures for his future owners. The best one wasn't seen by any new others. I'm going to hang it on the wall of the spare room.

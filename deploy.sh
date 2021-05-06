@@ -7,7 +7,7 @@
 # u - treat unset variables as an error
 set -eu
 
-dir="/Users/ianuser/Sync/org/blog/programmer/"
+dir="/Users/ianuser/Library/Mobile Documents/com~apple~CloudDocs/Documents/org/blog/programmer/"
 logFile="logs/hooks.log"
 
 echo "---deploy.sh now takes over---" >> "$dir$logFile"

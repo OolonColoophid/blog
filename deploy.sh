@@ -36,6 +36,8 @@ else
 fi
 
 # Upload
+## Note: Oct 2021
+## This currently uses a key
 if rsync -r --compress --progress --recursive public/. ianhocki@ianhocking.com:public_html/prog/ ; then
 	echo "rsync: success" >> "$logFile"
 	osascript -e 'display notification "Upload successful" with title "Blog Update"'

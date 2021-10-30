@@ -214,10 +214,10 @@ Hi, I'm Ian.
 I live in Canterbury with my wife and several gerbils.
 
 Following a successful career in academic psychology researching psycholinguistics
-and creativity[fn:psychol], I'm now looking for opportunities
+and creativity[fn:psychol], I'm now enjoying opportunities
 and challenges in my first love, software development. I enrolled on the University
-of Kent's [[https://www.kent.ac.uk/courses/postgraduate/243/computer-science][MSc in Computer Science]] in September 2019 and graduated in
-2021[fn:modules] with distinction. I'm currently working as a software developer at [[https://www.literatureandlatte.com][Literature and Latte]].
+of Kent's [[https://www.kent.ac.uk/courses/postgraduate/243/computer-science][MSc in Computer Science]][fn:modules] in September 2019 and graduated in
+2021with distinction. I'm currently working as a software developer at [[https://www.literatureandlatte.com][Literature and Latte]].
 
 Check out my [[https://www.dropbox.com/s/ygg3hlda4igj1y2/cv.pdf?dl=1][CV]]/[[https://www.dropbox.com/s/pa7ymvusgifhvt2/Resources%20and%20Parsing%20thesis%20Hocking.pdf?dl=1][PhD]].
 

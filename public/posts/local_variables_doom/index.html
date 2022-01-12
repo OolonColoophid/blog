@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Ian Hocking">
+    <meta name="description" content="Ian Hocking&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Permanently Set File-Local Variables in Doom Emacs"/>
+<meta name="twitter:description" content="From time to time, it&rsquo;s useful to set local variables within an org file. For instance, I have a file whose subsections I&rsquo;d like to encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
+# -*- buffer-auto-save-file-name: nil; -*- Emacs is understandably wary of running elisp simply because it exists in the file, however."/>
+
+    <meta property="og:title" content="Permanently Set File-Local Variables in Doom Emacs" />
+<meta property="og:description" content="From time to time, it&rsquo;s useful to set local variables within an org file. For instance, I have a file whose subsections I&rsquo;d like to encrypt. This being the case, I need to turn off autosave (since this could save plain text). To do this for the buffer, I add this to the top:
+# -*- buffer-auto-save-file-name: nil; -*- Emacs is understandably wary of running elisp simply because it exists in the file, however." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//ianhocking.com/prog/posts/local_variables_doom/" />
+<meta property="article:published_time" content="2019-09-09T00:00:00+01:00" />
+<meta property="article:modified_time" content="2019-09-10T17:19:43+01:00" />
+
+
+    
+      <base href="//ianhocking.com/prog/posts/local_variables_doom/">
+    
+    <title>
+  Permanently Set File-Local Variables in Doom Emacs · Dr Ian Hocking
+</title>
+
+    
+      <link rel="canonical" href="//ianhocking.com/prog/posts/local_variables_doom/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/prog/css/coder.min.54164a09bf154fdbc174f6d1f6f22b8b09773eaf85dd6099d9528df37516f6fb.css" integrity="sha256-VBZKCb8VT9vBdPbR9vIriwl3Pq&#43;F3WCZ2VKN83UW9vs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="//ianhocking.com/prog">
+      Dr Ian Hocking
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/">Pages</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/meta">Meta</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/about">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Permanently Set File-Local Variables in Doom Emacs</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-09-09T00:00:00&#43;01:00'>
+                September 9, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/prog/tags/emacs/">emacs</a>
+      <span class="separator">•</span>
+    <a href="/prog/tags/doom/">doom</a>
+      <span class="separator">•</span>
+    <a href="/prog/tags/elisp/">elisp</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>From time to time, it&rsquo;s useful to set local variables within an <code>org</code>
+file. For instance, I have a file whose subsections I&rsquo;d like to
+encrypt. This being the case, I need to turn off autosave (since this could save
+plain text). To do this for the buffer, I add this to the top:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org"><span style="color:#998;font-style:italic"># -*- buffer-auto-save-file-name: nil; -*-</span></code></pre></div>
+<p>Emacs is understandably wary of running elisp simply because it exists in the
+file, however. Upon opening this buffer, it warns:</p>
+
+<blockquote>
+<p>The local variables list in [filename] contains variables that are
+risky</p>
+</blockquote>
+
+<p>This is followed by a question about allowing them on this occasion only.
+Globally, the level of wariness is controlled by the variable
+<code>enable-local-variables</code>, whose explanation is given here: <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/elisp/File-Local-Variables.html#File-Local-Variables">File Local
+Variables - GNU Emacs Lisp Reference Manual</a>.</p>
+
+<p>I would, however, like to avoid setting this globally. I&rsquo;d prefer that Emacs
+adds safe
+variables to a whitelist. I&rsquo;d consider turning off autosave to be reasonably
+safe, so the first thing I tried was adding it to the whitelist. The safe variable is called
+<code>safe-local-variable-values</code> and is defined in the Emacs installation itself (i.e.
+in <code>/usr/local</code>, where my Emacs installation lives).</p>
+
+<p>Because I use <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, I put the following into my <code>./config/Doom/config.el</code> (which is actually tangled
+from my <code>config.org</code>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">  (<span style="color:#008080">add-to-list</span> <span style="color:#b84">&#39;safe-local-variable-values</span> <span style="font-weight:bold">&#39;</span>(<span style="color:#b84">&#34;buffer-auto-save-filename&#34;</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;nil&#34;</span>) <span style="color:#008080">t</span>)</code></pre></div>
+<p>But this didn&rsquo;t work. At first, I thought that perhaps the above elisp is running too
+early, as the list when I inspected it after opening Emacs showed only the
+original values (referring to variables relevant to other files). How late, I
+wondered, could I make this code run? After the <code>org</code> module is loaded?<sup class="footnote-ref" id="fnref:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1"><a href="#fn:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1">1</a></sup></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#008080">after!</span> <span style="color:#008080">org</span>
+  (<span style="color:#008080">add-to-list</span> <span style="color:#b84">&#39;safe-local-variable-values</span> <span style="font-weight:bold">&#39;</span>(<span style="color:#b84">&#34;buffer-auto-save-filename&#34;</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;nil&#34;</span>) <span style="color:#008080">t</span>)
+  )</code></pre></div>
+<p>Still no luck.</p>
+
+<p>It turns out that <code>safe-local-variables</code> was being set in
+<code>/.config/Doom/init.el</code>&ndash;this should have been before my <code>config.el</code>, and yet my
+<code>config.el</code> code was not modifying the variable.</p>
+
+<p>Fine, I thought&ndash;I&rsquo;ll carefully edit the part of the <code>init.el</code> setting
+<code>safe-local-variables</code>. But I still saw the same behaviour in my target file: I
+was being asked, temporarily, if I wanted to permit the variable
+<code>buffer-auto-save-file-name</code> to be set. Why wouldn&rsquo;t my method work? I wasn&rsquo;t
+sure. But since Doom had set the variables successfully before from other <code>org</code>
+files previousl, writing them to <code>safe-local-variables</code> in its own <code>init.el</code>, I
+had a look at how those files set variables and I saw that it was done in a
+slightly different manner:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">* Local variables :noexport:
+# local variables:
+# +org-export-directory: &#34;projects/&#34;
+# end:</code></pre></div>
+<p>I tried this with my problematic file. First schoolboy error: I didn&rsquo;t place
+it at the end of the file. This fixed, I tried again. But Emacs persisted in
+prompting me to only allow setting <code>buffer-auto-save-filename</code> temporarily. Why not permanently?</p>
+
+<p>I went back and looked again at the elisp in my <code>/.config/Doom/init.el</code> and
+realised that I had put <code>NIL</code> in quotes. Second schoolboy error. Of course, it
+shouldn&rsquo;t have quotes&mdash;it needs to be plain old <code>NIL</code>. The correct code in the
+<code>.init</code> is thus:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(<span style="color:#008080">custom-set-variables</span>
+ <span style="color:#998;font-style:italic">;; custom-set-variables was added by Custom.</span>
+ <span style="color:#998;font-style:italic">;; If you edit it by hand, you could mess it up, so be careful.</span>
+ <span style="color:#998;font-style:italic">;; Your init file should contain only one such instance.</span>
+ <span style="color:#998;font-style:italic">;; If there is more than one, they won&#39;t work right.</span>
+ <span style="font-weight:bold">&#39;</span>(<span style="color:#008080">custom-safe-themes</span>
+   (<span style="color:#999">quote</span>
+    (<span style="color:#b84">&#34;427fa665823299f8258d8e27c80a1481edbb8f5463a6fb2665261e9076626710&#34;</span> <span style="color:#b84">&#34;e838d6375a73fda607820c65eb3ea1f9336be7bd9a5528c9161e10c4aa663b5b&#34;</span> <span style="color:#b84">&#34;80365dd15f97396bdc38490390c23337063c8965c4556b8f50937e63b5e9a65c&#34;</span> <span style="color:#b84">&#34;fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8&#34;</span> <span style="color:#008080">default</span>)))
+ <span style="font-weight:bold">&#39;</span>(<span style="color:#008080">safe-local-variable-values</span>
+   (<span style="color:#999">quote</span>
+    ((<span style="color:#008080">+org-export-directory</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/&#34;</span>)
+     (<span style="color:#008080">+org-export-directory</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/cccuWorkloadModel&#34;</span>)
+     (<span style="color:#008080">+org-export-dir</span> <span style="font-weight:bold">.</span> <span style="color:#b84">&#34;projects/cccuWorkloadModel&#34;</span>)
+     (<span style="color:#008080">buffer-auto-save-file-name</span> <span style="font-weight:bold">.</span> <span style="color:#008080">nil</span>)))))</code></pre></div><div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1">The <code>after! org</code> is a Doom wrapper function that ensures the elisp codes that follows is evaluated after a given module is loaded.
+ <a class="footnote-return" href="#fnref:d4c1a9003a10bdfa4259a8cba0ef2e79:fn-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ianhocking" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>hic et nunc</p>
+    
+     © 2021
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & a modified <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

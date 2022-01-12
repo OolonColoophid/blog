@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Ian Hocking">
+    <meta name="description" content="Ian Hocking&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Merge Sort and Recursion"/>
+<meta name="twitter:description" content="One of the trickiest concepts of my MSc in Computer Science is recursion, which is defined as the act of &lsquo;calling oneself&rsquo;. In the context of computer functions, calling oneself is useful because it means doing whatever the function just did, but again, on something it has produced. Tricky to get your head around; even writing that last sentence was difficult!
+As part of the learning process, I&rsquo;ve been trying to clarify why I find recursion hard."/>
+
+    <meta property="og:title" content="Merge Sort and Recursion" />
+<meta property="og:description" content="One of the trickiest concepts of my MSc in Computer Science is recursion, which is defined as the act of &lsquo;calling oneself&rsquo;. In the context of computer functions, calling oneself is useful because it means doing whatever the function just did, but again, on something it has produced. Tricky to get your head around; even writing that last sentence was difficult!
+As part of the learning process, I&rsquo;ve been trying to clarify why I find recursion hard." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//ianhocking.com/prog/posts/mergesort/" />
+<meta property="article:published_time" content="2019-12-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-31T17:25:14+00:00" />
+
+
+    
+      <base href="//ianhocking.com/prog/posts/mergesort/">
+    
+    <title>
+  Merge Sort and Recursion · Dr Ian Hocking
+</title>
+
+    
+      <link rel="canonical" href="//ianhocking.com/prog/posts/mergesort/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/prog/css/coder.min.54164a09bf154fdbc174f6d1f6f22b8b09773eaf85dd6099d9528df37516f6fb.css" integrity="sha256-VBZKCb8VT9vBdPbR9vIriwl3Pq&#43;F3WCZ2VKN83UW9vs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="//ianhocking.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.59.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="//ianhocking.com/prog">
+      Dr Ian Hocking
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/">Pages</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/meta">Meta</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//ianhocking.com/prog/pages/about">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Merge Sort and Recursion</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-12-31T00:00:00Z'>
+                December 31, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/prog/tags/java/">Java</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>One of the trickiest concepts of my <a href="https://www.cs.kent.ac.uk/masters/courses/msc-compsci/">MSc in Computer Science</a> is recursion, which
+is defined as the act of <a href="https://en.wikipedia.org/wiki/Recursion">&lsquo;calling oneself&rsquo;</a>. In the context of computer functions, calling
+oneself is useful because it means doing whatever the function just did, but
+again, on something it has produced. Tricky to get your head around; even
+writing that last sentence was difficult!</p>
+
+<p>As part of the learning process, I&rsquo;ve been trying to clarify why I find
+recursion hard. The answer seems to be that I want to follow the journey of
+the recursion in a linear fashion; in other words, what is the program&rsquo;s state after the first
+self call? What is it after the second? This soon becomes overwhelming
+because there are too many elements in play. Whenever such confusion has
+happened to me in the
+past, the solution has lain in a better representation system. In other words, when
+Roman numerals are making maths tricky, time to switch to Arabic.</p>
+
+<p>There are many helpful ways of thinking about recursion out there. For instance, I found <a href="https://medium.com/@daniel.oliver.king/getting-started-with-recursion-f89f57c5b60e">this article</a>, which
+contains the following insight:</p>
+
+<blockquote>
+<p>When talking about writing recursive functions, most people focus on the fact that any recursive function needs to have two parts:</p>
+
+<ul>
+<li>A base case, in which the function can return the result immediately</li>
+<li>A recursive case, in which the function must call itself to break the current problem down to a simpler level</li>
+</ul>
+</blockquote>
+
+<p>This is great advice. It goes beyond thinking about recursion linearly, which
+I&rsquo;ve been trying to do, to thinking more about the algorithmic
+perspective&mdash;what is this function actually trying to do? Well, it is trying to split
+the problem into smaller pieces (recursive case), and when the pieces can&rsquo;t be made
+any smaller (base case), the recursions reverse their sequence.</p>
+
+<p>I wanted, however, to write a recursive program that tells me a bit about its
+recursive journey, and for that I implemented the <code>merge sort</code> algorithm<sup class="footnote-ref" id="fnref:9b4566e90fac7db57f1760216794d6bf:fn-1"><a href="#fn:9b4566e90fac7db57f1760216794d6bf:fn-1">1</a></sup>. This was a
+&lsquo;three birds with one stone&rsquo; situation. It not only helped my thinking about
+recursion, but also about the algorithm itself, as well as giving me more
+experience with Java.</p>
+
+<p>I&rsquo;ve put the full code (it&rsquo;s not long) on <a href="https://github.com/OolonColoophid/mergeSort">GitHub</a>, but you can see an example of the output
+below. This uses the list of numbers from the <a href="https://en.wikipedia.org/wiki/Merge%5Fsort">Wikipedia article on merge sort</a>:
+38, 27, 43, 3, 9, 82, 10 (shown in <a href="https://en.wikipedia.org/wiki/Merge%5Fsort#/media/File:Merge%5Fsort%5Falgorithm%5Fdiagram.svg">this diagram</a>).</p>
+
+<p>The algorithm itself splits (function <code>mergeSort</code>) the list into sublists until the lists are only of
+one element each. Then, it merges (function <code>merge</code>) the sublists into sorted
+units of successively longer lengths until the original length is reached&mdash;and
+thus we have 3, 9, 10, 27, 38, 43, 82.</p>
+
+<p>Here&rsquo;s the output of the program (put the Wikipedia diagram alongside while you read):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">- FUNC mergeSort starting
+  ...with array [38, 27, 43, 3, 9, 82, 10]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [38, 27, 43, 3]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [38, 27]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [38]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [27]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 38 &gt; 27 so add 27 to master array and move right pointer
+  Making array: [27, 38], now stored master array
+
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [43, 3]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [43]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [3]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 43 &gt; 3 so add 3 to master array and move right pointer
+  Making array: [3, 43], now stored master array
+
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 27 &gt; 3 so add 3 to master array and move right pointer
+  - 27 &lt;= 43 so add 27 to master array and move left pointer
+  - 38 &lt;= 43 so add 38 to master array and move left pointer
+  Making array: [3, 27, 38, 43], now stored master array
+
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [9, 82, 10]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [9, 82]
+  Recursion INTO FUNC mergeSort for left half
+- FUNC mergeSort starting
+  ...with array [9]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [82]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 9 &lt;= 82 so add 9 to master array and move left pointer
+  Making array: [9, 82], now stored master array
+
+  Recursion INTO FUNC mergeSort right half
+- FUNC mergeSort starting
+  ...with array [10]
+  Base condition (array indivisible)
+  Recursion OUT of FUNC mergeSort following base condition
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 9 &lt;= 10 so add 9 to master array and move left pointer
+  - 82 &gt; 10 so add 10 to master array and move right pointer
+  Making array: [9, 10, 82], now stored master array
+
+  Base condition met for left and right halves!
+- FUNC merge starting
+  - 3 &lt;= 9 so add 3 to master array and move left pointer
+  - 27 &gt; 9 so add 9 to master array and move right pointer
+  - 27 &gt; 10 so add 10 to master array and move right pointer
+  - 27 &lt;= 82 so add 27 to master array and move left pointer
+  - 38 &lt;= 82 so add 38 to master array and move left pointer
+  - 43 &lt;= 82 so add 43 to master array and move left pointer
+  Making array: [3, 9, 10, 27, 38, 43, 82], now stored master array
+
+---
+Sorted result:[3, 9, 10, 27, 38, 43, 82]</code></pre></div>
+<p>So putting some comments in the output of merge sort really helped me to
+understand the relationship between the algorithm and the recursive code, and I
+hope it might help you.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:9b4566e90fac7db57f1760216794d6bf:fn-1">Footnotes are recursive! This is just a note to remind you that the merge sort algorithm is a very efficient way of sorting a list of numbers by magnitude, since the time taken to sort has more to do with the number of recursion levels than the linear elements in the list (at least, that&rsquo;s my impression). It was partly created by <a href="https://en.wikipedia.org/wiki/John%5Fvon%5FNeumann">John von Neumann</a>, and I read much about him and the digital revolution in a book called <a href="https://www.amazon.co.uk/Turings-Cathedral-Origins-Digital-Universe/dp/014101590X">Turing&rsquo;s Cathedral</a>.
+ <a class="footnote-return" href="#fnref:9b4566e90fac7db57f1760216794d6bf:fn-1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ianhocking" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>hic et nunc</p>
+    
+     © 2021
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & a modified <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

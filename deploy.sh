@@ -44,15 +44,4 @@ if rsync -r --compress --progress --recursive public/. ianhocki@ianhocking.com:p
 else
 	echo "rsync: failed" >> "$logFile"
 fi
--- 
-Wed 12 Jan 2022 21:13:09 GMT
-Git hook .git/hooks/post-commit executed by git-commit
-Hook will push master branch to remote origin
--- 
-Wed 12 Jan 2022 21:15:45 GMT
-Git hook .git/hooks/post-commit executed by git-commit
-Hook will push master branch to remote origin
--- 
-Sun  8 Jan 2023 09:34:35 GMT
-Git hook .git/hooks/post-commit executed by git-commit
-Hook will push master branch to remote origin
+

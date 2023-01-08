@@ -1183,7 +1183,7 @@ directory itself).
 ** Our First Foster Cat, Sheldon :cats:
 :PROPERTIES:
 :EXPORT_FILE_NAME: sheldon
-:EXPORT_DATE: 20121-01-12
+:EXPORT_DATE: 2021-01-12
 :END:
 
 I wrote the below in the late spring of 2021.

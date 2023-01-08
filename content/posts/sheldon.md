@@ -1,8 +1,8 @@
 +++
 title = "Our First Foster Cat, Sheldon"
 author = ["Dr Ian Hocking"]
-date = 0121-01-12T00:00:00-00:01
-lastmod = 2023-01-08T09:32:25+00:00
+date = 2021-01-12
+lastmod = 2023-01-08T09:35:37+00:00
 tags = ["cats"]
 draft = false
 +++

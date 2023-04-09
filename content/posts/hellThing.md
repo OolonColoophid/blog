@@ -2,28 +2,42 @@
 title = "What the hell is this thing?"
 author = ["Dr Ian Hocking"]
 date = 2023-04-08
-lastmod = 2023-04-08T18:22:42+01:00
+lastmod = 2023-04-09T19:07:38+01:00
 tags = ["AI", "ChatGPT", "GPT4"]
 draft = false
 +++
 
-I've been looking through old drafts of my novel, **Flashback**, which features several technologies that did not exist when I wrote the first draft back in 2008 (or whenever it was). First, a time machine that used centrifuges to create a gravity-based mechanism for sending objects backward in time: fictional, and remains so. Second, a human-brain interface that imposed a donor personality on the brain into which the chip had been placed: still science fiction. Third, a credit-card sized personal assistant called Ego, which could listen for human speech, respond verbally, and take action (sometimes implicitly) to achieve the goals it had been set. In one scene, Ego is present when a hacker called Jem breaks into Saskia Brandt's locked study. It wants her to turn on the computer.
+I've been looking through old drafts of my novel, [Flashback](<https://www.amazon.co.uk/Flashback-Saskia-Brandt-Ian-Hocking/dp/1549762753/ref=nodl_?dplnkId=3502ef3b-ba01-43c0-b228-d843c1bdb228>), which features several technologies that did not exist when I wrote the first draft back in 2008 (or whenever it was). First, a time machine that used centrifuges to create a gravity-based mechanism for sending objects backward in time: fictional, and remains so. Second, a human-brain interface that imposed a donor personality on the brain into which the chip had been placed: still science fiction. Third, a credit-card sized personal assistant called Ego, which could listen for human speech, respond verbally, and take action (sometimes implicitly) to achieve the goals it had been set. In one scene, Ego is present when a hacker called Jem breaks into Saskia Brandt's locked study. It wants her to turn on the computer.
 
-&gt; ‘What the hell is this thing? Some kind of PDA?’
-&gt; The credit card was small, but its voice was rich. ‘I don’t understand. Please power-on the computer.’
-&gt; ‘Where are you?’
-&gt; ‘I don’t understand.’
-&gt; Jem tapped the desktop computer’s power switch. She left the card next to it while she returned to the door and pressed her ear to the wood. Silence. ‘I want to know who is controlling this device.’
-&gt; ‘I am.’
-&gt; ‘I understand that. But where are you and who are you?’
-&gt; ‘I am here and my name is Ego.’
-&gt; Turning from the door, she paced the room like a gallery visitor perplexed by an exhibit. ‘Like the cat. Saskia’s cat is called Ego.’
-&gt; A pause. ‘I didn’t know that.’
-&gt; ‘What do you know?’
-&gt; ‘Many things.’
-&gt; Jem took the card and slapped it across the edge of the desk. ‘Don’t do that,’ it said.
-&gt; ‘Tell me who you are, or I’ll cut the power to Saskia’s desktop.’
-&gt; ‘My name is Ego. I am a computer-based agent.’
+> ‘What the hell is this thing? Some kind of PDA?’
+>
+> The credit card was small, but its voice was rich. ‘I don’t understand. Please power-on the computer.’
+>
+> ‘Where are you?’
+>
+> ‘I don’t understand.’
+>
+> Jem tapped the desktop computer’s power switch. She left the card next to it while she returned to the door and pressed her ear to the wood. Silence. ‘I want to know who is controlling this device.’
+>
+> ‘I am.’
+>
+> ‘I understand that. But where are you and who are you?’
+>
+> ‘I am here and my name is Ego.’
+>
+> Turning from the door, she paced the room like a gallery visitor perplexed by an exhibit. ‘Like the cat. Saskia’s cat is called Ego.’
+>
+> A pause. ‘I didn’t know that.’
+>
+> ‘What do you know?’
+>
+> ‘Many things.’
+>
+> Jem took the card and slapped it across the edge of the desk. ‘Don’t do that,’ it said.
+>
+> ‘Tell me who you are, or I’ll cut the power to Saskia’s desktop.’
+>
+> ‘My name is Ego. I am a computer-based agent.’
 
 Things rarely come to pass in the manner they are described in science fiction, often because science fiction isn't really about predicting the future. But it was certainly at the back of my mind, as we approached the year 2023 (the 'future' in which several key scenes are set in Deja Vu and Flashback) that the work was about to become dated. The European Union, for instance, still included the UK. But the one thing I was quite confident about - and, indeed, would have bet could never happen - is that a conversation such as the one above could have taken place between a person and a computer. That, I think, is turning out to be wrong in interesting, amazing, and perhaps frightening ways.
 

@@ -7,7 +7,7 @@
 # u - treat unset variables as an error
 set -eu
 
-dir="/Users/ianuser/documents/org/blog/programmer/"
+dir="$(pwd)/"
 logFile="logs/hooks.log"
 
 echo "---deploy.sh now takes over---" >> "$dir$logFile"

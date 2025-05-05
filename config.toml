@@ -4,8 +4,13 @@ title = "Dr Ian Hocking"
 theme = "hugo-coder"
 defaultcontentlanguage = "en"
 
-paginate = 20
+[pagination]
+pagerSize = 20
+
 canonifyurls = false
+
+# Ignore certain warnings
+ignoreLogs = ['warning-goldmark-raw-html']
 
 # Syntax highlighting
 # See https://gohugo.io/content-management/syntax-highlighting/
@@ -19,9 +24,10 @@ pygmentsStyle = "trac"
 pygmentsCodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "ianhocking" # Enable or disable Disqus.
+# disqusShortname = "ianhocking" # Deprecated method to enable Disqus
 
 [params]
+    disqusShortname = "ianhocking" # New location for Disqus shortname
     author = "Ian Hocking"
     info = "Code, Thoughts and Worlds"
     avatarurl = "images/ianHocking.jpg"

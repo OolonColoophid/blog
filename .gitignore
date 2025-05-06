@@ -6,12 +6,21 @@ deploy.sh # My server deploy script
 todo.org
 notes.org
 
+# Hugo generated files
 content     # Duplication of the website itself
-resources   # Duplication
-public      # No need to see these files - they're on the web, after all, at ianhocking.com
+resources/  # Duplication
+public*/    # No need to see these files - they're on the web
 archetypes  # Not needed
 static      # Not needed
 logs
+.hugo_build.lock
+out/
 
-MyClass.class
+# Generated CSS and asset files
+resources/_gen/
+public*/
+
+# Build artifacts
+*.class
 MyClass.java
+**/.claude/settings.local.json

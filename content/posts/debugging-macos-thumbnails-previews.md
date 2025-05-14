@@ -124,5 +124,5 @@ That's it for now. Mind how you go.
 
 - [Apple's QuickLook Programming Guide](https://developer.apple.com/documentation/quicklook)
 - [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/)
-- [Debugging with Xcode](https://developer.apple.com/documentation/xcode/debugging-with-xcode)
+- [Debugging with Xcode](https://developer.apple.com/documentation/xcode/debugging)
 - [Understanding System Integrity Protection](https://support.apple.com/en-us/102149)

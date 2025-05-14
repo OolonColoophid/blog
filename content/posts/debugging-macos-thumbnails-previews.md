@@ -62,8 +62,14 @@ These commands refresh QuickLook's awareness of available extensions.
 - Your thumbnail extension should now be running
 
 If extensions aren't running:
-- Restart Finder (`killall Finder`)
-- Restart the thumbnail agent (`killall com.apple.quicklook.ThumbnailsAgent`)
+- Restart Finder:
+  ```bash
+  killall Finder
+  ```
+- Restart the thumbnail agent:
+  ```bash
+  killall com.apple.quicklook.ThumbnailsAgent
+  ```
 - Manually trigger QuickLook by selecting one of your files and pressing spacebar
 
 ### 5. Verify Extension Processes
@@ -99,9 +105,18 @@ In Xcode:
 ## Advanced Techniques
 
 For persistent issues:
-- Use `log stream --predicate 'subsystem contains "quicklook"'` to monitor QuickLook-related log messages
-- Check `~/Library/Caches/com.apple.QuickLook.thumbnailcache` to see if your thumbnails are being cached
-- Examine `~/Library/Preferences/com.apple.QuickLookDaemon.plist` for QuickLook configuration issues
+- Monitor QuickLook-related log messages:
+  ```bash
+  log stream --predicate 'subsystem contains "quicklook"'
+  ```
+- Check if your thumbnails are being cached:
+  ```bash
+  ls -la ~/Library/Caches/com.apple.QuickLook.thumbnailcache
+  ```
+- Examine QuickLook configuration issues:
+  ```bash
+  defaults read com.apple.QuickLookDaemon
+  ```
 
 That's it for now. Mind how you go.
 

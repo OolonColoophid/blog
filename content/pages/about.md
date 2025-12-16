@@ -15,7 +15,7 @@ and challenges in my first love, software development. I enrolled on the Univers
 of Kent's [MSc in Computer Science](https://www.kent.ac.uk/courses/postgraduate/243/computer-science)[^fn:2] in September 2019 and graduated in
 2021with distinction. I'm currently working as a software developer at [Literature and Latte](https://www.literatureandlatte.com).
 
-Check out my [CV](https://www.dropbox.com/scl/fi/ai4w97dipqg90zpmksjjg/cv.pdf?rlkey=76eqxf8dl6b50telyybec28gl&dl=0)/[PhD](https://www.dropbox.com/s/pa7ymvusgifhvt2/Resources%20and%20Parsing%20thesis%20Hocking.pdf?dl=1).
+Check out my [CV](https://www.dropbox.com/scl/fi/k4pzouuxuo0v4c9ikag9m/cv.pdf?rlkey=oy493v6v1tyacl9ohqzph5pyg&dl=0)/[PhD](https://www.dropbox.com/s/pa7ymvusgifhvt2/Resources%20and%20Parsing%20thesis%20Hocking.pdf?dl=1).
 
 Are you looking for my old blog This Writing Life? [It lives!](http://ianhocking.com/2012/06/19/%E2%98%85-the-cabinet-of-curiosities/) But is seldom updated.
 

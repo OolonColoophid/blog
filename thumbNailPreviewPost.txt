@@ -1,0 +1,24 @@
+
+*** Attach Debugger to Thumbnail and Preview
+
+Thumbnail and Preview Quicklook; Debug; Attach; App Extensions
+
+This has been tested on a system with SIP disabled.
+
+- [ ] Remove any existing Scapple apps from ~/Applications~ and from ~Derived Data~; even from Xcode's ~Archives~ folder in the ~Library~
+  - (Warning: Deleting Dervied Data will probably lead to spurious build failures in Xcode; clean and bulid to remove these.)
+  - It could be that if you launch an unsigned version of Scapple (for instance, by running it from Xcode), unsigned extensions will be loaded and used; these could fail. The com.apple.quicklook.ThumbnailsAgent might log a 'Failed to create extensionProcess' error. You might be able to fix this by resetting via qlmanage (see below) and restarting ThumbanilsAgent
+- [ ] Build & Archive a signed version of Scapple
+- [ ] Put this in ~/Applications~
+- On the command line:
+  - [ ] "qlmanage -r" <-- Force reloading Generators list
+  - [ ] "qlmanage -r cache" <-- Reset thumbnail disk cache
+- [ ] Open Scapple from Applications <-- Loads App Extensions for thumbnails
+- [ ] Open a _new_ Finder window and search for .scap files
+- [ ] ScapplePreview and ScappleThumbnail should be running
+  - If they aren't restart Finder and com.apple.quicklook.ThumbnailsAgent
+  - Manually triggering a QuickLook by selecting a .scap and pressing space will force Finder to load the preview extension
+  - To be confident the corrct executables (i.e. those from ~/Applications~ are running), look in Activity Monitor > Info > Executable Path
+- [ ] Set at least one debug point in the thumbnail code to get Xcode to switch debug sessions to the thumbnail
+- Now attach the debugger to the process using Xcode (irrespective of scheme):
+  - [ ] Debug > Attach to Process > PID or Process Name = "Scapple Thumbnail", Debug Process As "Me", Toolchain "Automatic", Malloc Stack "Enable Logging"

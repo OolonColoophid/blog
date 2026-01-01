@@ -48,6 +48,12 @@ Custom layout overrides exist in:
 - `layouts/partials/header.html`: Custom header
 - `layouts/partials/posts/`: Post-specific partials
 
+### Content Workflow
+
+**Critical**: All blog content is authored in `allPosts.org` (org-mode) and exported via ox-hugo to generate the markdown files in `content/`.
+
+**NEVER edit markdown files in `content/` directly** - always edit `allPosts.org` instead. Direct edits to markdown will be overwritten on the next org export.
+
 ### Content Format
 
 Blog posts use Hugo front matter in TOML format:

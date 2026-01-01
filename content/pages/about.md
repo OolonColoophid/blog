@@ -7,7 +7,7 @@ draft = false
 
 Hi, I'm Ian.
 
-I live in Canterbury with my wife and several gerbils.
+I live in Cornwall with my wife and a cat.
 
 Following a successful career in academic psychology researching psycholinguistics
 and creativity[^fn:1], I'm now enjoying opportunities

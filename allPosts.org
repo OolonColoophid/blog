@@ -210,7 +210,7 @@ Now you know!
 :END:
 Hi, I'm Ian.
 
-I live in Cornwall with my wife and a cat.
+I live in Cornwall with my wife and cat.
 
 Following a successful career in academic psychology researching psycholinguistics
 and creativity[fn:psychol], I'm now enjoying opportunities

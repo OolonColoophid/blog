@@ -7,7 +7,7 @@ draft = false
 
 Hi, I'm Ian.
 
-I live in Cornwall with my wife and a cat.
+I live in Cornwall with my wife and cat.
 
 Following a successful career in academic psychology researching psycholinguistics
 and creativity[^fn:1], I'm now enjoying opportunities
